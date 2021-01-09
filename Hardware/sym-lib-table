@@ -1,4 +1,4 @@
 (sym_lib_table
-  (lib (name bms1-rescue)(type Legacy)(uri ${KIPRJMOD}/bms1-rescue.lib)(options "")(descr ""))
   (lib (name RM85V7)(type Legacy)(uri ${KIPRJMOD}/RM85V7.lib)(options "")(descr ""))
+  (lib (name LTC6810-1)(type Legacy)(uri ${KIPRJMOD}/LTC6810-1.lib)(options "")(descr ""))
 )
