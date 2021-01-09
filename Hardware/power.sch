@@ -1,0 +1,330 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 2 5
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Connector:Conn_01x02_Female J3
+U 1 1 5FAD7D52
+P 1550 2250
+F 0 "J3" H 1442 1925 50  0000 C CNN
+F 1 "Conn_01x02_Female" H 1442 2016 50  0000 C CNN
+F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 1550 2250 50  0001 C CNN
+F 3 "~" H 1550 2250 50  0001 C CNN
+	1    1550 2250
+	-1   0    0    1   
+$EndComp
+$Comp
+L Regulator_Switching:LM2596S-5 U3
+U 1 1 5FADABDE
+P 3450 2250
+F 0 "U3" H 3450 2617 50  0000 C CNN
+F 1 "LM2596S-5" H 3450 2526 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:TO-263-5_TabPin3" H 3500 2000 50  0001 L CIN
+F 3 "http://www.ti.com/lit/ds/symlink/lm2596.pdf" H 3450 2250 50  0001 C CNN
+	1    3450 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C9
+U 1 1 5FADDCE9
+P 2500 2250
+F 0 "C9" H 2592 2296 50  0000 L CNN
+F 1 "100n" H 2592 2205 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric" H 2500 2250 50  0001 C CNN
+F 3 "~" H 2500 2250 50  0001 C CNN
+	1    2500 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:L_Small L2
+U 1 1 5FADEE69
+P 4650 2350
+F 0 "L2" V 4835 2350 50  0000 C CNN
+F 1 "33u" V 4744 2350 50  0000 C CNN
+F 2 "Inductor_SMD:L_12x12mm_H8mm" H 4650 2350 50  0001 C CNN
+F 3 "~" H 4650 2350 50  0001 C CNN
+	1    4650 2350
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:CP_Small C10
+U 1 1 5FAE0A9C
+P 2800 2250
+F 0 "C10" H 2888 2296 50  0000 L CNN
+F 1 "680u" H 2888 2205 50  0000 L CNN
+F 2 "Capacitor_SMD:CP_Elec_6.3x7.7" H 2800 2250 50  0001 C CNN
+F 3 "~" H 2800 2250 50  0001 C CNN
+	1    2800 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:CP_Small C13
+U 1 1 5FAE3D09
+P 5000 2450
+F 0 "C13" H 5088 2496 50  0000 L CNN
+F 1 "220uF" H 5088 2405 50  0000 L CNN
+F 2 "Capacitor_SMD:CP_Elec_6.3x7.7" H 5000 2450 50  0001 C CNN
+F 3 "~" H 5000 2450 50  0001 C CNN
+	1    5000 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D_Schottky D7
+U 1 1 5FAE479F
+P 4250 2500
+F 0 "D7" V 4204 2579 50  0000 L CNN
+F 1 "D_Schottky" V 4295 2579 50  0000 L CNN
+F 2 "Diode_SMD:D_SMB" H 4250 2500 50  0001 C CNN
+F 3 "~" H 4250 2500 50  0001 C CNN
+	1    4250 2500
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2950 2150 2800 2150
+Wire Wire Line
+	3950 2350 4250 2350
+Wire Wire Line
+	4750 2350 5000 2350
+Connection ~ 4250 2350
+Wire Wire Line
+	4250 2350 4550 2350
+Wire Wire Line
+	5000 2150 3950 2150
+Wire Wire Line
+	5000 2150 5000 2350
+Connection ~ 5000 2350
+Wire Wire Line
+	5000 2350 5800 2350
+Wire Wire Line
+	2500 2350 2500 2850
+Wire Wire Line
+	5000 2850 5000 2550
+Wire Wire Line
+	4250 2650 4250 2850
+Connection ~ 4250 2850
+Wire Wire Line
+	4250 2850 5000 2850
+Wire Wire Line
+	3450 2550 3450 2850
+Connection ~ 3450 2850
+Wire Wire Line
+	3450 2850 4250 2850
+Wire Wire Line
+	2950 2350 2950 2850
+Connection ~ 2950 2850
+Wire Wire Line
+	2950 2850 3450 2850
+Wire Wire Line
+	2800 2350 2800 2850
+Wire Wire Line
+	3450 2850 3450 2950
+$Comp
+L power:GND #PWR025
+U 1 1 5FAED334
+P 3450 2950
+F 0 "#PWR025" H 3450 2700 50  0001 C CNN
+F 1 "GND" H 3455 2777 50  0000 C CNN
+F 2 "" H 3450 2950 50  0001 C CNN
+F 3 "" H 3450 2950 50  0001 C CNN
+	1    3450 2950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR021
+U 1 1 5FAEE8FF
+P 1900 2250
+F 0 "#PWR021" H 1900 2000 50  0001 C CNN
+F 1 "GND" H 1905 2077 50  0000 C CNN
+F 2 "" H 1900 2250 50  0001 C CNN
+F 3 "" H 1900 2250 50  0001 C CNN
+	1    1900 2250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1900 2250 1750 2250
+$Comp
+L Device:Fuse F1
+U 1 1 5FAEFFDF
+P 2050 2150
+F 0 "F1" V 1853 2150 50  0000 C CNN
+F 1 "Fuse" V 1944 2150 50  0000 C CNN
+F 2 "Diode_SMD:D_SMB" V 1980 2150 50  0001 C CNN
+F 3 "~" H 2050 2150 50  0001 C CNN
+	1    2050 2150
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1750 2150 1900 2150
+Wire Wire Line
+	2200 2150 2250 2150
+$Comp
+L Device:D_Schottky D5
+U 1 1 5FAF1827
+P 2250 2300
+F 0 "D5" V 2204 2379 50  0000 L CNN
+F 1 "D_Schottky" V 2295 2379 50  0000 L CNN
+F 2 "Diode_SMD:D_SMB" H 2250 2300 50  0001 C CNN
+F 3 "~" H 2250 2300 50  0001 C CNN
+	1    2250 2300
+	0    1    1    0   
+$EndComp
+Connection ~ 2250 2150
+Wire Wire Line
+	2250 2450 2250 2850
+Connection ~ 2800 2150
+Connection ~ 2500 2150
+Wire Wire Line
+	2500 2150 2800 2150
+Wire Wire Line
+	2250 2150 2500 2150
+Connection ~ 2800 2850
+Wire Wire Line
+	2800 2850 2950 2850
+Connection ~ 2500 2850
+Wire Wire Line
+	2500 2850 2800 2850
+Wire Wire Line
+	2250 2850 2500 2850
+$Comp
+L Regulator_Linear:LM1117-3.3 U2
+U 1 1 5FAF5A27
+P 3400 3700
+F 0 "U2" H 3400 3942 50  0000 C CNN
+F 1 "LM1117-3.3" H 3400 3851 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-223" H 3400 3700 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/lm1117.pdf" H 3400 3700 50  0001 C CNN
+	1    3400 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C11
+U 1 1 5FAF6BC0
+P 2800 3800
+F 0 "C11" H 2892 3846 50  0000 L CNN
+F 1 "100n" H 2892 3755 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric" H 2800 3800 50  0001 C CNN
+F 3 "~" H 2800 3800 50  0001 C CNN
+	1    2800 3800
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C12
+U 1 1 5FAF733B
+P 4000 3800
+F 0 "C12" H 4092 3846 50  0000 L CNN
+F 1 "100n" H 4092 3755 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric" H 4000 3800 50  0001 C CNN
+F 3 "~" H 4000 3800 50  0001 C CNN
+	1    4000 3800
+	1    0    0    -1  
+$EndComp
+Connection ~ 2800 3700
+Wire Wire Line
+	2800 3700 3100 3700
+Wire Wire Line
+	3700 3700 4000 3700
+Wire Wire Line
+	4250 3700 4250 3550
+Connection ~ 4000 3700
+Wire Wire Line
+	4000 3700 4250 3700
+Wire Wire Line
+	4000 3900 4000 4000
+Wire Wire Line
+	4000 4000 3400 4000
+Wire Wire Line
+	2800 4000 2800 3900
+Connection ~ 3400 4000
+Wire Wire Line
+	3400 4000 2800 4000
+Wire Wire Line
+	3400 4000 3400 4050
+$Comp
+L power:GND #PWR024
+U 1 1 5FAFB775
+P 3400 4050
+F 0 "#PWR024" H 3400 3800 50  0001 C CNN
+F 1 "GND" H 3405 3877 50  0000 C CNN
+F 2 "" H 3400 4050 50  0001 C CNN
+F 3 "" H 3400 4050 50  0001 C CNN
+	1    3400 4050
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR023
+U 1 1 5FAFC4B2
+P 2650 3650
+F 0 "#PWR023" H 2650 3500 50  0001 C CNN
+F 1 "+5V" H 2665 3823 50  0000 C CNN
+F 2 "" H 2650 3650 50  0001 C CNN
+F 3 "" H 2650 3650 50  0001 C CNN
+	1    2650 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR026
+U 1 1 5FAFCB57
+P 4250 3550
+F 0 "#PWR026" H 4250 3400 50  0001 C CNN
+F 1 "+3.3V" H 4265 3723 50  0000 C CNN
+F 2 "" H 4250 3550 50  0001 C CNN
+F 3 "" H 4250 3550 50  0001 C CNN
+	1    4250 3550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D_Schottky D6
+U 1 1 5FFC9BA8
+P 2400 3700
+F 0 "D6" V 2354 3779 50  0000 L CNN
+F 1 "D_Schottky" V 2445 3779 50  0000 L CNN
+F 2 "Diode_SMD:D_SMB" H 2400 3700 50  0001 C CNN
+F 3 "~" H 2400 3700 50  0001 C CNN
+	1    2400 3700
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:+5VD #PWR027
+U 1 1 5FFCAC1E
+P 5800 2350
+F 0 "#PWR027" H 5800 2200 50  0001 C CNN
+F 1 "+5VD" H 5815 2523 50  0000 C CNN
+F 2 "" H 5800 2350 50  0001 C CNN
+F 3 "" H 5800 2350 50  0001 C CNN
+	1    5800 2350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2250 3700 2150 3700
+Wire Wire Line
+	2150 3700 2150 3650
+$Comp
+L power:+5VD #PWR022
+U 1 1 5FFCC30E
+P 2150 3650
+F 0 "#PWR022" H 2150 3500 50  0001 C CNN
+F 1 "+5VD" H 2165 3823 50  0000 C CNN
+F 2 "" H 2150 3650 50  0001 C CNN
+F 3 "" H 2150 3650 50  0001 C CNN
+	1    2150 3650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2550 3700 2650 3700
+Wire Wire Line
+	2650 3650 2650 3700
+Connection ~ 2650 3700
+Wire Wire Line
+	2650 3700 2800 3700
+$EndSCHEMATC
