@@ -14,17 +14,6 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L Connector:Conn_01x02_Female J3
-U 1 1 5FAD7D52
-P 1550 2250
-F 0 "J3" H 1442 1925 50  0000 C CNN
-F 1 "Conn_01x02_Female" H 1442 2016 50  0000 C CNN
-F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 1550 2250 50  0001 C CNN
-F 3 "~" H 1550 2250 50  0001 C CNN
-	1    1550 2250
-	-1   0    0    1   
-$EndComp
-$Comp
 L Regulator_Switching:LM2596S-5 U3
 U 1 1 5FADABDE
 P 3450 2250
@@ -36,14 +25,14 @@ F 3 "http://www.ti.com/lit/ds/symlink/lm2596.pdf" H 3450 2250 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C_Small C9
+L Device:C_Small C12
 U 1 1 5FADDCE9
-P 2500 2250
-F 0 "C9" H 2592 2296 50  0000 L CNN
-F 1 "100n" H 2592 2205 50  0000 L CNN
-F 2 "Capacitor_SMD:C_1206_3216Metric" H 2500 2250 50  0001 C CNN
-F 3 "~" H 2500 2250 50  0001 C CNN
-	1    2500 2250
+P 2800 2500
+F 0 "C12" H 2892 2546 50  0000 L CNN
+F 1 "100n" H 2892 2455 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric" H 2800 2500 50  0001 C CNN
+F 3 "~" H 2800 2500 50  0001 C CNN
+	1    2800 2500
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -58,21 +47,21 @@ F 3 "~" H 4650 2350 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Device:CP_Small C10
+L Device:CP_Small C11
 U 1 1 5FAE0A9C
-P 2800 2250
-F 0 "C10" H 2888 2296 50  0000 L CNN
-F 1 "680u" H 2888 2205 50  0000 L CNN
-F 2 "Capacitor_SMD:CP_Elec_6.3x7.7" H 2800 2250 50  0001 C CNN
-F 3 "~" H 2800 2250 50  0001 C CNN
-	1    2800 2250
+P 2600 2500
+F 0 "C11" H 2688 2546 50  0000 L CNN
+F 1 "680u" H 2688 2455 50  0000 L CNN
+F 2 "Capacitor_SMD:CP_Elec_6.3x7.7" H 2600 2500 50  0001 C CNN
+F 3 "~" H 2600 2500 50  0001 C CNN
+	1    2600 2500
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:CP_Small C13
+L Device:CP_Small C15
 U 1 1 5FAE3D09
 P 5000 2450
-F 0 "C13" H 5088 2496 50  0000 L CNN
+F 0 "C15" H 5088 2496 50  0000 L CNN
 F 1 "220uF" H 5088 2405 50  0000 L CNN
 F 2 "Capacitor_SMD:CP_Elec_6.3x7.7" H 5000 2450 50  0001 C CNN
 F 3 "~" H 5000 2450 50  0001 C CNN
@@ -91,8 +80,6 @@ F 3 "~" H 4250 2500 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	2950 2150 2800 2150
-Wire Wire Line
 	3950 2350 4250 2350
 Wire Wire Line
 	4750 2350 5000 2350
@@ -106,8 +93,6 @@ Wire Wire Line
 Connection ~ 5000 2350
 Wire Wire Line
 	5000 2350 5800 2350
-Wire Wire Line
-	2500 2350 2500 2850
 Wire Wire Line
 	5000 2850 5000 2550
 Wire Wire Line
@@ -126,8 +111,6 @@ Connection ~ 2950 2850
 Wire Wire Line
 	2950 2850 3450 2850
 Wire Wire Line
-	2800 2350 2800 2850
-Wire Wire Line
 	3450 2850 3450 2950
 $Comp
 L power:GND #PWR025
@@ -141,61 +124,34 @@ F 3 "" H 3450 2950 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR021
-U 1 1 5FAEE8FF
-P 1900 2250
-F 0 "#PWR021" H 1900 2000 50  0001 C CNN
-F 1 "GND" H 1905 2077 50  0000 C CNN
-F 2 "" H 1900 2250 50  0001 C CNN
-F 3 "" H 1900 2250 50  0001 C CNN
-	1    1900 2250
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	1900 2250 1750 2250
-$Comp
 L Device:Fuse F1
 U 1 1 5FAEFFDF
-P 2050 2150
-F 0 "F1" V 1853 2150 50  0000 C CNN
-F 1 "Fuse" V 1944 2150 50  0000 C CNN
-F 2 "Diode_SMD:D_SMB" V 1980 2150 50  0001 C CNN
-F 3 "~" H 2050 2150 50  0001 C CNN
-	1    2050 2150
+P 1350 2150
+F 0 "F1" V 1153 2150 50  0000 C CNN
+F 1 "Fuse" V 1244 2150 50  0000 C CNN
+F 2 "Diode_SMD:D_SMB" V 1280 2150 50  0001 C CNN
+F 3 "~" H 1350 2150 50  0001 C CNN
+	1    1350 2150
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	1750 2150 1900 2150
+	1050 2150 1200 2150
 Wire Wire Line
-	2200 2150 2250 2150
+	1500 2150 1550 2150
 $Comp
 L Device:D_Schottky D5
 U 1 1 5FAF1827
-P 2250 2300
-F 0 "D5" V 2204 2379 50  0000 L CNN
-F 1 "D_Schottky" V 2295 2379 50  0000 L CNN
-F 2 "Diode_SMD:D_SMB" H 2250 2300 50  0001 C CNN
-F 3 "~" H 2250 2300 50  0001 C CNN
-	1    2250 2300
+P 1550 2300
+F 0 "D5" V 1504 2379 50  0000 L CNN
+F 1 "D_Schottky" V 1595 2379 50  0000 L CNN
+F 2 "Diode_SMD:D_SMB" H 1550 2300 50  0001 C CNN
+F 3 "~" H 1550 2300 50  0001 C CNN
+	1    1550 2300
 	0    1    1    0   
 $EndComp
-Connection ~ 2250 2150
+Connection ~ 1550 2150
 Wire Wire Line
-	2250 2450 2250 2850
-Connection ~ 2800 2150
-Connection ~ 2500 2150
-Wire Wire Line
-	2500 2150 2800 2150
-Wire Wire Line
-	2250 2150 2500 2150
-Connection ~ 2800 2850
-Wire Wire Line
-	2800 2850 2950 2850
-Connection ~ 2500 2850
-Wire Wire Line
-	2500 2850 2800 2850
-Wire Wire Line
-	2250 2850 2500 2850
+	1550 2450 1550 2850
 $Comp
 L Regulator_Linear:LM1117-3.3 U2
 U 1 1 5FAF5A27
@@ -208,10 +164,10 @@ F 3 "http://www.ti.com/lit/ds/symlink/lm1117.pdf" H 3400 3700 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C_Small C11
+L Device:C_Small C13
 U 1 1 5FAF6BC0
 P 2800 3800
-F 0 "C11" H 2892 3846 50  0000 L CNN
+F 0 "C13" H 2892 3846 50  0000 L CNN
 F 1 "100n" H 2892 3755 50  0000 L CNN
 F 2 "Capacitor_SMD:C_1206_3216Metric" H 2800 3800 50  0001 C CNN
 F 3 "~" H 2800 3800 50  0001 C CNN
@@ -219,10 +175,10 @@ F 3 "~" H 2800 3800 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C_Small C12
+L Device:C_Small C14
 U 1 1 5FAF733B
 P 4000 3800
-F 0 "C12" H 4092 3846 50  0000 L CNN
+F 0 "C14" H 4092 3846 50  0000 L CNN
 F 1 "100n" H 4092 3755 50  0000 L CNN
 F 2 "Capacitor_SMD:C_1206_3216Metric" H 4000 3800 50  0001 C CNN
 F 3 "~" H 4000 3800 50  0001 C CNN
@@ -327,4 +283,94 @@ Wire Wire Line
 Connection ~ 2650 3700
 Wire Wire Line
 	2650 3700 2800 3700
+$Comp
+L Device:C_Small C9
+U 1 1 5FFCD640
+P 1950 2500
+F 0 "C9" H 2042 2546 50  0000 L CNN
+F 1 "330p" H 2042 2455 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric" H 1950 2500 50  0001 C CNN
+F 3 "~" H 1950 2500 50  0001 C CNN
+	1    1950 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C10
+U 1 1 5FFCE3B8
+P 2300 2500
+F 0 "C10" H 2392 2546 50  0000 L CNN
+F 1 "47n" H 2392 2455 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric" H 2300 2500 50  0001 C CNN
+F 3 "~" H 2300 2500 50  0001 C CNN
+	1    2300 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Ferrite_Bead_Small FB1
+U 1 1 5FFCEC0C
+P 2150 2150
+F 0 "FB1" V 1913 2150 50  0000 C CNN
+F 1 "Ferrite_Bead_Small" V 2004 2150 50  0000 C CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric" V 2080 2150 50  0001 C CNN
+F 3 "~" H 2150 2150 50  0001 C CNN
+	1    2150 2150
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1550 2150 1950 2150
+Wire Wire Line
+	2250 2150 2300 2150
+Wire Wire Line
+	2300 2150 2300 2400
+Connection ~ 2300 2150
+Wire Wire Line
+	2300 2600 2300 2850
+Wire Wire Line
+	1950 2850 1950 2600
+Wire Wire Line
+	1550 2850 1950 2850
+Wire Wire Line
+	1950 2400 1950 2150
+Connection ~ 1950 2150
+Wire Wire Line
+	1950 2150 2050 2150
+Wire Wire Line
+	1950 2850 2300 2850
+Connection ~ 1950 2850
+Connection ~ 2300 2850
+Wire Wire Line
+	2300 2850 2600 2850
+Wire Wire Line
+	2300 2150 2600 2150
+Wire Wire Line
+	2600 2150 2600 2400
+Connection ~ 2600 2150
+Wire Wire Line
+	2600 2150 2800 2150
+Wire Wire Line
+	2600 2600 2600 2850
+Connection ~ 2600 2850
+Wire Wire Line
+	2600 2850 2800 2850
+Wire Wire Line
+	2800 2150 2800 2400
+Connection ~ 2800 2150
+Wire Wire Line
+	2800 2150 2950 2150
+Wire Wire Line
+	2800 2600 2800 2850
+Connection ~ 2800 2850
+Wire Wire Line
+	2800 2850 2950 2850
+$Comp
+L power:VCC #PWR?
+U 1 1 5FFFB3C9
+P 1050 2150
+F 0 "#PWR?" H 1050 2000 50  0001 C CNN
+F 1 "VCC" H 1067 2323 50  0000 C CNN
+F 2 "" H 1050 2150 50  0001 C CNN
+F 3 "" H 1050 2150 50  0001 C CNN
+	1    1050 2150
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

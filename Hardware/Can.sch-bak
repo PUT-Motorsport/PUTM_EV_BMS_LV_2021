@@ -46,10 +46,10 @@ F 3 "" H 3650 1650 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C_Small C15
+L Device:C_Small C17
 U 1 1 5FB886F3
 P 3550 1800
-F 0 "C15" V 3321 1800 50  0000 C CNN
+F 0 "C17" V 3321 1800 50  0000 C CNN
 F 1 "100n" V 3412 1800 50  0000 C CNN
 F 2 "Capacitor_SMD:C_1206_3216Metric" H 3550 1800 50  0001 C CNN
 F 3 "~" H 3550 1800 50  0001 C CNN
@@ -86,10 +86,10 @@ F 3 "" H 2300 2600 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C_Small C14
+L Device:C_Small C16
 U 1 1 5FB8B717
 P 2900 2700
-F 0 "C14" V 2671 2700 50  0000 C CNN
+F 0 "C16" V 2671 2700 50  0000 C CNN
 F 1 "100n" V 2762 2700 50  0000 C CNN
 F 2 "Capacitor_SMD:C_1206_3216Metric" H 2900 2700 50  0001 C CNN
 F 3 "~" H 2900 2700 50  0001 C CNN
@@ -192,21 +192,6 @@ Connection ~ 4800 2900
 Text GLabel 5450 2100 2    50   Input ~ 0
 CANH
 Text GLabel 5450 2900 2    50   Input ~ 0
-CANL
-$Comp
-L Connector:Conn_01x02_Female J5
-U 1 1 5FB9989C
-P 6600 2500
-F 0 "J5" H 6628 2476 50  0000 L CNN
-F 1 "Conn_01x02_Female" H 6628 2385 50  0000 L CNN
-F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 6600 2500 50  0001 C CNN
-F 3 "~" H 6600 2500 50  0001 C CNN
-	1    6600 2500
-	1    0    0    -1  
-$EndComp
-Text GLabel 6400 2500 0    50   Input ~ 0
-CANH
-Text GLabel 6400 2600 0    50   Input ~ 0
 CANL
 $Comp
 L Connector:Conn_01x02_Male J4

@@ -1,4 +1,4 @@
-16941117009680913
+16939506779083201
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -66847,15 +66847,8 @@ RM85V7
 
 
 0
-0
-0
-RM85V7
-RM85V7-Z-24VDC
-
-
-0
-0
-0
+6
+6
 Relay_SMD
 Relay_DPDT_AXICOM_IMSeries_JLeg
 http://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Specification+Or+Standard%7F108-98001%7FW5%7Fpdf%7FEnglish%7FENG_SS_108-98001_W5.pdf
