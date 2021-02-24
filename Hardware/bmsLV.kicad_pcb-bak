@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 (kicad_pcb (version 20171130) (host pcbnew "(5.1.5)-3")
 
   (general
@@ -5405,3 +5406,6 @@
   (gr_line (start 234.229509 109.253815) (end 113.029509 109.253815) (layer Edge.Cuts) (width 0.1))
 
 )
+=======
+(kicad_pcb (version 4) (host kicad "dummy file") )
+>>>>>>> parent of a7f7122 (Save before ZCO version)

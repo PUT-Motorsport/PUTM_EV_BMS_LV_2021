@@ -1,4 +1,3 @@
 (fp_lib_table
   (lib (name RM85V7)(type KiCad)(uri ${KIPRJMOD}/RM85V7.pretty)(options "")(descr ""))
-  (lib (name CellPad)(type KiCad)(uri ${KIPRJMOD}/CellPad.pretty)(options "")(descr ""))
 )

@@ -722,8 +722,8 @@ L Connector:Conn_01x02_Female J?
 U 1 1 5FFFFAC2
 P 7900 2450
 AR Path="/5FAD7AC5/5FFFFAC2" Ref="J?"  Part="1" 
-AR Path="/5FFFFAC2" Ref="J3"  Part="1" 
-F 0 "J3" H 7792 2125 50  0000 C CNN
+AR Path="/5FFFFAC2" Ref="J?"  Part="1" 
+F 0 "J?" H 7792 2125 50  0000 C CNN
 F 1 "Conn_01x02_Female" H 7792 2216 50  0000 C CNN
 F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 7900 2450 50  0001 C CNN
 F 3 "~" H 7900 2450 50  0001 C CNN
@@ -735,8 +735,8 @@ L power:GND #PWR?
 U 1 1 5FFFFAC8
 P 8250 2450
 AR Path="/5FAD7AC5/5FFFFAC8" Ref="#PWR?"  Part="1" 
-AR Path="/5FFFFAC8" Ref="#PWR0101"  Part="1" 
-F 0 "#PWR0101" H 8250 2200 50  0001 C CNN
+AR Path="/5FFFFAC8" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 8250 2200 50  0001 C CNN
 F 1 "GND" H 8255 2277 50  0000 C CNN
 F 2 "" H 8250 2450 50  0001 C CNN
 F 3 "" H 8250 2450 50  0001 C CNN
@@ -750,10 +750,10 @@ Wire Wire Line
 Wire Wire Line
 	8250 2350 8250 2300
 $Comp
-L power:VCC #PWR0102
+L power:VCC #PWR?
 U 1 1 60004D86
 P 8250 2300
-F 0 "#PWR0102" H 8250 2150 50  0001 C CNN
+F 0 "#PWR?" H 8250 2150 50  0001 C CNN
 F 1 "VCC" H 8267 2473 50  0000 C CNN
 F 2 "" H 8250 2300 50  0001 C CNN
 F 3 "" H 8250 2300 50  0001 C CNN
@@ -765,8 +765,8 @@ L Connector:Conn_01x02_Female J?
 U 1 1 60009E9A
 P 7900 3000
 AR Path="/5FB83FF2/60009E9A" Ref="J?"  Part="1" 
-AR Path="/60009E9A" Ref="J5"  Part="1" 
-F 0 "J5" H 7928 2976 50  0000 L CNN
+AR Path="/60009E9A" Ref="J?"  Part="1" 
+F 0 "J?" H 7928 2976 50  0000 L CNN
 F 1 "Conn_01x02_Female" H 7928 2885 50  0000 L CNN
 F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 7900 3000 50  0001 C CNN
 F 3 "~" H 7900 3000 50  0001 C CNN
@@ -806,7 +806,7 @@ U 1 1 605FDFF5
 P 8350 5200
 F 0 "K1" H 8375 5475 50  0000 C CNN
 F 1 "RM85V7" H 8375 5384 50  0000 C CNN
-F 2 "RM85V7:RM85V7" V 8500 5200 50  0001 C CNN
+F 2 "RM85V7:RM85V7-Z-24VDC" V 8500 5200 50  0001 C CNN
 F 3 "" V 8500 5200 50  0001 C CNN
 	1    8350 5200
 	1    0    0    -1  
@@ -815,6 +815,17 @@ Wire Wire Line
 	8000 4900 8000 5150
 Wire Wire Line
 	8000 5350 8000 5600
+$Comp
+L Transistor_FET:BSS138 Q1
+U 1 1 60613319
+P 7900 5800
+F 0 "Q1" H 8105 5754 50  0000 L CNN
+F 1 "BSS138" H 8105 5845 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 8100 5725 50  0001 L CIN
+F 3 "https://www.fairchildsemi.com/datasheets/BS/BSS138.pdf" H 7900 5800 50  0001 L CNN
+	1    7900 5800
+	1    0    0    -1  
+$EndComp
 $Comp
 L power:GND #PWR018
 U 1 1 6065B29C
@@ -883,6 +894,7 @@ F 3 "" H 8850 5200 50  0001 C CNN
 	1    8850 5200
 	1    0    0    -1  
 $EndComp
+<<<<<<< HEAD
 Wire Wire Line
 	8000 5350 7900 5350
 Wire Wire Line
@@ -948,4 +960,6 @@ F 3 "" H 7200 1650 50  0001 C CNN
 	1    7200 1650
 	1    0    0    -1  
 $EndComp
+=======
+>>>>>>> parent of a7f7122 (Save before ZCO version)
 $EndSCHEMATC
