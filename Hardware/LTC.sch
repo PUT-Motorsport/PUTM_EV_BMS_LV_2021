@@ -25,6 +25,11 @@ Wire Wire Line
 	4250 8550 5350 8550
 Wire Wire Line
 	5350 8550 5350 3450
+Wire Wire Line
+	3600 8550 3850 8550
+Wire Wire Line
+	3600 8550 3600 8600
+Connection ~ 3600 8550
 Connection ~ 3600 9600
 Wire Wire Line
 	3200 9600 3600 9600
@@ -52,6 +57,9 @@ Wire Wire Line
 Wire Wire Line
 	4100 9050 4100 8850
 Connection ~ 4100 9050
+Wire Wire Line
+	3200 8550 3600 8550
+Connection ~ 3200 8550
 Wire Wire Line
 	3050 8550 3200 8550
 Wire Wire Line
@@ -176,13 +184,25 @@ Wire Wire Line
 Wire Wire Line
 	4250 6450 5150 6450
 Wire Wire Line
+	5150 3050 5150 6450
+Wire Wire Line
 	4100 5900 5100 5900
+Wire Wire Line
+	5100 2950 5100 5900
 Wire Wire Line
 	4250 5400 5050 5400
 Wire Wire Line
+	5050 5400 5050 2850
+Wire Wire Line
+	4100 4850 5000 4850
+Wire Wire Line
 	5000 4850 5000 2750
 Wire Wire Line
+	4250 4350 4950 4350
+Wire Wire Line
 	4950 4350 4950 2650
+Wire Wire Line
+	4100 3800 4900 3800
 Wire Wire Line
 	4900 3800 4900 2550
 Wire Wire Line
@@ -190,6 +210,8 @@ Wire Wire Line
 Wire Wire Line
 	3050 8550 3050 8200
 Connection ~ 3600 8450
+Wire Wire Line
+	3600 8450 3600 8550
 Wire Wire Line
 	4100 8000 4100 8350
 Wire Wire Line
@@ -578,6 +600,11 @@ Wire Wire Line
 	3050 5400 3050 5050
 Connection ~ 3600 5300
 Wire Wire Line
+	4100 4850 4100 5200
+Wire Wire Line
+	4100 4850 4100 4650
+Connection ~ 4100 4850
+Wire Wire Line
 	3200 4350 3850 4350
 Connection ~ 3200 4350
 Wire Wire Line
@@ -647,10 +674,22 @@ Wire Wire Line
 	3600 5200 3200 5200
 Wire Wire Line
 	3600 5050 3600 5100
+$Comp
+L power:GND #PWR037
+U 1 1 600FD82C
+P 4250 4600
+F 0 "#PWR037" H 4250 4350 50  0001 C CNN
+F 1 "GND" H 4255 4427 50  0000 C CNN
+F 2 "" H 4250 4600 50  0001 C CNN
+F 3 "" H 4250 4600 50  0001 C CNN
+	1    4250 4600
+	1    0    0    -1  
+$EndComp
 Wire Wire Line
 	4250 4550 4250 4600
 Wire Wire Line
 	3050 4350 3050 4750
+Connection ~ 4250 4350
 $Comp
 L Device:R_Small R25
 U 1 1 600FD822
@@ -665,6 +704,17 @@ $EndComp
 Wire Wire Line
 	4050 4350 4250 4350
 $Comp
+L Device:C_Small C19
+U 1 1 600FD81B
+P 4250 4450
+F 0 "C19" H 4158 4404 50  0000 R CNN
+F 1 "10nF" H 4158 4495 50  0000 R CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric" H 4250 4450 50  0001 C CNN
+F 3 "~" H 4250 4450 50  0001 C CNN
+	1    4250 4450
+	-1   0    0    1   
+$EndComp
+$Comp
 L Device:Battery_Cell BT3
 U 1 1 600FD815
 P 3050 4950
@@ -678,6 +728,11 @@ $EndComp
 Wire Wire Line
 	3050 4350 3050 4000
 Connection ~ 3600 4250
+Wire Wire Line
+	4100 3800 4100 4150
+Wire Wire Line
+	4100 3800 4100 3600
+Connection ~ 4100 3800
 Wire Wire Line
 	4100 2750 4100 3100
 Wire Wire Line
@@ -758,6 +813,17 @@ Wire Wire Line
 	3600 4150 3200 4150
 Wire Wire Line
 	3600 4000 3600 4050
+$Comp
+L power:GND #PWR036
+U 1 1 5FFC24FD
+P 4250 3550
+F 0 "#PWR036" H 4250 3300 50  0001 C CNN
+F 1 "GND" H 4255 3377 50  0000 C CNN
+F 2 "" H 4250 3550 50  0001 C CNN
+F 3 "" H 4250 3550 50  0001 C CNN
+	1    4250 3550
+	1    0    0    -1  
+$EndComp
 Wire Wire Line
 	4250 3500 4250 3550
 Wire Wire Line
@@ -1436,65 +1502,4 @@ Wire Wire Line
 	6550 1500 6450 1500
 Wire Wire Line
 	6450 1500 6450 1650
-Connection ~ 4100 3800
-Wire Wire Line
-	4100 3800 4100 3600
-Wire Wire Line
-	4100 3800 4100 4150
-Connection ~ 4250 4350
-Connection ~ 4100 4850
-Wire Wire Line
-	4100 4850 4100 4650
-Wire Wire Line
-	4100 4850 4100 5200
-Wire Wire Line
-	5150 3050 5150 6450
-Wire Wire Line
-	5100 2950 5100 5900
-Wire Wire Line
-	5050 5400 5050 2850
-$Comp
-L power:GND #PWR036
-U 1 1 5FFC24FD
-P 4250 3550
-F 0 "#PWR036" H 4250 3300 50  0001 C CNN
-F 1 "GND" H 4255 3377 50  0000 C CNN
-F 2 "" H 4250 3550 50  0001 C CNN
-F 3 "" H 4250 3550 50  0001 C CNN
-	1    4250 3550
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C_Small C19
-U 1 1 600FD81B
-P 4250 4450
-F 0 "C19" H 4158 4404 50  0000 R CNN
-F 1 "10nF" H 4158 4495 50  0000 R CNN
-F 2 "Capacitor_SMD:C_1206_3216Metric" H 4250 4450 50  0001 C CNN
-F 3 "~" H 4250 4450 50  0001 C CNN
-	1    4250 4450
-	-1   0    0    1   
-$EndComp
-$Comp
-L power:GND #PWR037
-U 1 1 600FD82C
-P 4250 4600
-F 0 "#PWR037" H 4250 4350 50  0001 C CNN
-F 1 "GND" H 4255 4427 50  0000 C CNN
-F 2 "" H 4250 4600 50  0001 C CNN
-F 3 "" H 4250 4600 50  0001 C CNN
-	1    4250 4600
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	4100 3800 4900 3800
-Wire Wire Line
-	4250 4350 4950 4350
-Wire Wire Line
-	4100 4850 5000 4850
-Wire Wire Line
-	3600 8450 3600 8600
-Wire Wire Line
-	3200 8550 3850 8550
-Connection ~ 3200 8550
 $EndSCHEMATC

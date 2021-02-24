@@ -1,4 +1,4 @@
-16939506779083201
+16941120164199099
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -6082,6 +6082,13 @@ capacitor tantalum
 0
 2
 2
+CellPad
+CellPad
+
+
+0
+0
+0
 Connector
 Banana_Jack_1Pin
 Single banana socket, footprint - 6mm drill
