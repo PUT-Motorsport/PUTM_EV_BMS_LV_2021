@@ -1,4 +1,5 @@
 EESchema Schematic File Version 4
+LIBS:bmsLV-cache
 EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
@@ -122,7 +123,7 @@ U 1 1 606242F5
 P 2650 3800
 F 0 "TH1" V 2885 3800 50  0000 C CNN
 F 1 "Thermistor_PTC" V 2794 3800 50  0000 C CNN
-F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 2700 3600 50  0001 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 2700 3600 50  0001 L CNN
 F 3 "~" H 2650 3800 50  0001 C CNN
 	1    2650 3800
 	-1   0    0    1   
@@ -133,7 +134,7 @@ U 1 1 60626217
 P 3050 3800
 F 0 "TH2" V 3285 3800 50  0000 C CNN
 F 1 "Thermistor_PTC" V 3194 3800 50  0000 C CNN
-F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 3100 3600 50  0001 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 3100 3600 50  0001 L CNN
 F 3 "~" H 3050 3800 50  0001 C CNN
 	1    3050 3800
 	-1   0    0    1   
@@ -144,7 +145,7 @@ U 1 1 606266F5
 P 3450 3800
 F 0 "TH3" V 3685 3800 50  0000 C CNN
 F 1 "Thermistor_PTC" V 3594 3800 50  0000 C CNN
-F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 3500 3600 50  0001 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 3500 3600 50  0001 L CNN
 F 3 "~" H 3450 3800 50  0001 C CNN
 	1    3450 3800
 	-1   0    0    1   
@@ -155,7 +156,7 @@ U 1 1 6062692C
 P 3850 3800
 F 0 "TH4" V 4085 3800 50  0000 C CNN
 F 1 "Thermistor_PTC" V 3994 3800 50  0000 C CNN
-F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 3900 3600 50  0001 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 3900 3600 50  0001 L CNN
 F 3 "~" H 3850 3800 50  0001 C CNN
 	1    3850 3800
 	-1   0    0    1   
@@ -166,7 +167,7 @@ U 1 1 60626CD3
 P 4250 3800
 F 0 "TH5" V 4485 3800 50  0000 C CNN
 F 1 "Thermistor_PTC" V 4394 3800 50  0000 C CNN
-F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 4300 3600 50  0001 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 4300 3600 50  0001 L CNN
 F 3 "~" H 4250 3800 50  0001 C CNN
 	1    4250 3800
 	-1   0    0    1   
@@ -177,7 +178,7 @@ U 1 1 60627523
 P 4650 3800
 F 0 "TH6" V 4885 3800 50  0000 C CNN
 F 1 "Thermistor_PTC" V 4794 3800 50  0000 C CNN
-F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 4700 3600 50  0001 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 4700 3600 50  0001 L CNN
 F 3 "~" H 4650 3800 50  0001 C CNN
 	1    4650 3800
 	-1   0    0    1   
