@@ -2435,7 +2435,7 @@
   )
 
   (module Resistor_SMD:R_1206_3216Metric (layer F.Cu) (tedit 5B301BBD) (tstamp 6028CF88)
-    (at 173.098 71.374)
+    (at 156.715 72.517)
     (descr "Resistor SMD 1206 (3216 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: http://www.tortai-tech.com/upload/download/2011102023233369053.pdf), generated with kicad-footprint-generator")
     (tags resistor)
     (path /5FF86554/604D5C59)
@@ -5218,7 +5218,7 @@
   )
 
   (module Capacitor_SMD:C_1206_3216Metric (layer F.Cu) (tedit 5B301BBE) (tstamp 6028C937)
-    (at 173.104 73.66)
+    (at 156.721 74.803)
     (descr "Capacitor SMD 1206 (3216 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: http://www.tortai-tech.com/upload/download/2011102023233369053.pdf), generated with kicad-footprint-generator")
     (tags capacitor)
     (path /5FF86554/6051CA4B)
