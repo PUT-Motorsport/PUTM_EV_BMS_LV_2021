@@ -1,5 +1,4 @@
 EESchema Schematic File Version 4
-LIBS:bmsLV-cache
 EELAYER 30 0
 EELAYER END
 $Descr A3 16535 11693
@@ -1811,7 +1810,7 @@ Connection ~ 4900 3000
 Wire Wire Line
 	4900 3000 4900 2550
 Wire Wire Line
-	4450 2350 4450 2900
+	4450 2350 4450 2750
 Wire Wire Line
 	4450 3000 4900 3000
 $Comp
@@ -1825,6 +1824,35 @@ F 1 "+24V" H 3065 2423 50  0000 C CNN
 F 2 "" H 3050 2250 50  0001 C CNN
 F 3 "" H 3050 2250 50  0001 C CNN
 	1    3050 2250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4450 2750 4100 2750
+Connection ~ 4450 2750
+Wire Wire Line
+	4450 2750 4450 2900
+$Comp
+L Connector:Conn_01x02_Male J17
+U 1 1 6089DF71
+P 4100 2550
+F 0 "J17" H 4208 2731 50  0000 C CNN
+F 1 "Conn_01x02_Male" H 4208 2640 50  0000 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 4100 2550 50  0001 C CNN
+F 3 "~" H 4100 2550 50  0001 C CNN
+	1    4100 2550
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4000 2750 3800 2750
+$Comp
+L power:GND #PWR0107
+U 1 1 608CD223
+P 3800 2750
+F 0 "#PWR0107" H 3800 2500 50  0001 C CNN
+F 1 "GND" H 3805 2577 50  0000 C CNN
+F 2 "" H 3800 2750 50  0001 C CNN
+F 3 "" H 3800 2750 50  0001 C CNN
+	1    3800 2750
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC
