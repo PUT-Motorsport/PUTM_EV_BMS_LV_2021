@@ -1,4 +1,5 @@
 EESchema Schematic File Version 4
+LIBS:bmsLV-cache
 EELAYER 30 0
 EELAYER END
 $Descr A3 16535 11693
@@ -1754,7 +1755,7 @@ U 1 1 6042E497
 P 5300 1950
 F 0 "J16" V 5362 1994 50  0000 L CNN
 F 1 "Conn_01x02_Male" V 5453 1994 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 5300 1950 50  0001 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 5300 1950 50  0001 C CNN
 F 3 "~" H 5300 1950 50  0001 C CNN
 	1    5300 1950
 	0    1    1    0   
@@ -1777,7 +1778,7 @@ U 1 1 60474109
 P 4500 2550
 F 0 "J15" H 4608 2731 50  0000 C CNN
 F 1 "Conn_01x02_Male" H 4608 2640 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 4500 2550 50  0001 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 4500 2550 50  0001 C CNN
 F 3 "~" H 4500 2550 50  0001 C CNN
 	1    4500 2550
 	1    0    0    -1  
@@ -1798,7 +1799,7 @@ U 1 1 604A2535
 P 4250 2900
 F 0 "J14" H 4358 3081 50  0000 C CNN
 F 1 "Conn_01x02_Male" H 4358 2990 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 4250 2900 50  0001 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 4250 2900 50  0001 C CNN
 F 3 "~" H 4250 2900 50  0001 C CNN
 	1    4250 2900
 	1    0    0    -1  
