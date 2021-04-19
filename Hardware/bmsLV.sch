@@ -714,7 +714,7 @@ AR Path="/5FAD7AC5/5FFFFAC2" Ref="J?"  Part="1"
 AR Path="/5FFFFAC2" Ref="J3"  Part="1" 
 F 0 "J3" H 7842 2075 50  0000 C CNN
 F 1 "Conn_01x02_Female" H 7842 2166 50  0000 C CNN
-F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 7950 2400 50  0001 C CNN
+F 2 "Connector_Phoenix_MSTB:PhoenixContact_MSTBVA_2,5_2-G-5,08_1x02_P5.08mm_Vertical" H 7950 2400 50  0001 C CNN
 F 3 "~" H 7950 2400 50  0001 C CNN
 	1    7950 2400
 	-1   0    0    1   
@@ -741,8 +741,8 @@ P 7900 3000
 AR Path="/5FB83FF2/60009E9A" Ref="J?"  Part="1" 
 AR Path="/60009E9A" Ref="J5"  Part="1" 
 F 0 "J5" H 7928 2976 50  0000 L CNN
-F 1 "Conn_01x02_Female" H 7928 2885 50  0000 L CNN
-F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 7900 3000 50  0001 C CNN
+F 1 "CAN conn" H 7928 2885 50  0000 L CNN
+F 2 "Connector_Phoenix_MSTB:PhoenixContact_MSTBVA_2,5_2-G-5,08_1x02_P5.08mm_Vertical" H 7900 3000 50  0001 C CNN
 F 3 "~" H 7900 3000 50  0001 C CNN
 	1    7900 3000
 	-1   0    0    1   
