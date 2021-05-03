@@ -1,5 +1,6 @@
 EESchema Schematic File Version 4
-EELAYER 30 0
+LIBS:bmsLV-cache
+EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -14,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L Regulator_Switching:LM2596S-5 U3
+L bmsLV-rescue:LM2596S-5-Regulator_Switching U3
 U 1 1 5FADABDE
 P 3450 2250
 F 0 "U3" H 3450 2617 50  0000 C CNN
