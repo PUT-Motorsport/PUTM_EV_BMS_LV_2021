@@ -27,3 +27,5 @@ fp-info-cache
 # Exported BOM files
 *.xml
 *.csv
+
+PUTM_EV_BMS_LV_GERBERS/
