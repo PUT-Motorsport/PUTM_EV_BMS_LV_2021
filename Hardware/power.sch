@@ -1,6 +1,5 @@
 EESchema Schematic File Version 4
-LIBS:bmsLV-cache
-EELAYER 29 0
+EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -159,7 +158,7 @@ U 1 1 5FAF5A27
 P 3400 3700
 F 0 "U2" H 3400 3942 50  0000 C CNN
 F 1 "LM1117-3.3" H 3400 3851 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:SOT-223" H 3400 3700 50  0001 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-223-3_TabPin2" H 3400 3700 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm1117.pdf" H 3400 3700 50  0001 C CNN
 	1    3400 3700
 	1    0    0    -1  
