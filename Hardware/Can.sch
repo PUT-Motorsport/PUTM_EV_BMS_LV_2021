@@ -14,7 +14,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L Interface_CAN_LIN:MCP2562-H-SN U4
+L bmsLV-rescue:MCP2562-H-SN-Interface_CAN_LIN U4
 U 1 1 5FB847F4
 P 3650 2500
 F 0 "U4" H 3650 3081 50  0000 C CNN
@@ -35,7 +35,7 @@ RX_Can
 Wire Wire Line
 	3650 2100 3650 1800
 $Comp
-L power:+5V #PWR032
+L bmsLV-rescue:+5V-power #PWR032
 U 1 1 5FB87973
 P 3650 1650
 F 0 "#PWR032" H 3650 1500 50  0001 C CNN
@@ -46,7 +46,7 @@ F 3 "" H 3650 1650 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C_Small C17
+L bmsLV-rescue:C_Small-Device C17
 U 1 1 5FB886F3
 P 3550 1800
 F 0 "C17" V 3321 1800 50  0000 C CNN
@@ -60,7 +60,7 @@ Connection ~ 3650 1800
 Wire Wire Line
 	3650 1800 3650 1650
 $Comp
-L power:GND #PWR031
+L bmsLV-rescue:GND-power #PWR031
 U 1 1 5FB8975D
 P 3350 1800
 F 0 "#PWR031" H 3350 1550 50  0001 C CNN
@@ -75,7 +75,7 @@ Wire Wire Line
 Wire Wire Line
 	3150 2600 2900 2600
 $Comp
-L power:+3.3V #PWR028
+L bmsLV-rescue:+3.3V-power #PWR028
 U 1 1 5FB8A58B
 P 2300 2600
 F 0 "#PWR028" H 2300 2450 50  0001 C CNN
@@ -86,7 +86,7 @@ F 3 "" H 2300 2600 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C_Small C16
+L bmsLV-rescue:C_Small-Device C16
 U 1 1 5FB8B717
 P 2900 2700
 F 0 "C16" V 2671 2700 50  0000 C CNN
@@ -98,7 +98,7 @@ F 3 "~" H 2900 2700 50  0001 C CNN
 $EndComp
 Connection ~ 2900 2600
 $Comp
-L power:GND #PWR029
+L bmsLV-rescue:GND-power #PWR029
 U 1 1 5FB8CC3F
 P 2900 2900
 F 0 "#PWR029" H 2900 2650 50  0001 C CNN
@@ -113,7 +113,7 @@ Wire Wire Line
 Wire Wire Line
 	3150 2700 3150 3000
 $Comp
-L power:GND #PWR030
+L bmsLV-rescue:GND-power #PWR030
 U 1 1 5FB8DCB8
 P 3150 3000
 F 0 "#PWR030" H 3150 2750 50  0001 C CNN
@@ -128,7 +128,7 @@ Wire Wire Line
 Wire Wire Line
 	3650 2900 3650 3000
 $Comp
-L power:GND #PWR033
+L bmsLV-rescue:GND-power #PWR033
 U 1 1 5FB9013B
 P 3650 3000
 F 0 "#PWR033" H 3650 2750 50  0001 C CNN
@@ -139,7 +139,7 @@ F 3 "" H 3650 3000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R_Small R9
+L bmsLV-rescue:R_Small-Device R9
 U 1 1 5FB91F93
 P 4400 2400
 F 0 "R9" H 4459 2446 50  0000 L CNN
@@ -152,7 +152,7 @@ $EndComp
 Wire Wire Line
 	4400 2250 4400 2300
 $Comp
-L Device:D_TVS_x2_AAC D8
+L bmsLV-rescue:D_TVS_x2_AAC-Device D8
 U 1 1 5FB95EFA
 P 4800 2500
 F 0 "D8" V 4846 2579 50  0000 L CNN
@@ -163,7 +163,7 @@ F 3 "~" H 4650 2500 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L power:GND #PWR034
+L bmsLV-rescue:GND-power #PWR034
 U 1 1 5FB9744E
 P 5050 2500
 F 0 "#PWR034" H 5050 2250 50  0001 C CNN
@@ -194,7 +194,7 @@ CANH
 Text GLabel 5450 2900 2    50   Input ~ 0
 CANL
 $Comp
-L Connector:Conn_01x02_Male J4
+L bmsLV-rescue:Conn_01x02_Male-Connector J4
 U 1 1 606A8AD6
 P 4600 2700
 F 0 "J4" H 4572 2582 50  0000 R CNN

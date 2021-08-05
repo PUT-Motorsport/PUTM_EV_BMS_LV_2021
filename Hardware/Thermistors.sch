@@ -16,7 +16,7 @@ $EndDescr
 Wire Wire Line
 	2000 2000 2350 2000
 $Comp
-L Device:R_Small R33
+L bmsLV-rescue:R_Small-Device R33
 U 1 1 6061BF07
 P 2450 2000
 F 0 "R33" V 2254 2000 50  0000 C CNN
@@ -31,7 +31,7 @@ Wire Wire Line
 Wire Wire Line
 	2000 2300 2350 2300
 $Comp
-L Device:R_Small R34
+L bmsLV-rescue:R_Small-Device R34
 U 1 1 6061E665
 P 2450 2300
 F 0 "R34" V 2254 2300 50  0000 C CNN
@@ -48,7 +48,7 @@ Wire Wire Line
 Wire Wire Line
 	2000 2600 2350 2600
 $Comp
-L Device:R_Small R35
+L bmsLV-rescue:R_Small-Device R35
 U 1 1 606208B8
 P 2450 2600
 F 0 "R35" V 2254 2600 50  0000 C CNN
@@ -63,7 +63,7 @@ Wire Wire Line
 Wire Wire Line
 	2000 2900 2350 2900
 $Comp
-L Device:R_Small R36
+L bmsLV-rescue:R_Small-Device R36
 U 1 1 60621BF1
 P 2450 2900
 F 0 "R36" V 2254 2900 50  0000 C CNN
@@ -78,7 +78,7 @@ Wire Wire Line
 Wire Wire Line
 	2000 3200 2350 3200
 $Comp
-L Device:R_Small R37
+L bmsLV-rescue:R_Small-Device R37
 U 1 1 6062228C
 P 2450 3200
 F 0 "R37" V 2254 3200 50  0000 C CNN
@@ -93,7 +93,7 @@ Wire Wire Line
 Wire Wire Line
 	2000 3500 2350 3500
 $Comp
-L Device:R_Small R38
+L bmsLV-rescue:R_Small-Device R38
 U 1 1 60622889
 P 2450 3500
 F 0 "R38" V 2254 3500 50  0000 C CNN
@@ -117,7 +117,7 @@ Wire Wire Line
 	2650 2000 2650 3650
 Connection ~ 2650 2000
 $Comp
-L Device:Thermistor_PTC TH1
+L bmsLV-rescue:Thermistor_PTC-Device TH1
 U 1 1 606242F5
 P 2650 3800
 F 0 "TH1" V 2885 3800 50  0000 C CNN
@@ -128,7 +128,7 @@ F 3 "~" H 2650 3800 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L Device:Thermistor_PTC TH2
+L bmsLV-rescue:Thermistor_PTC-Device TH2
 U 1 1 60626217
 P 3050 3800
 F 0 "TH2" V 3285 3800 50  0000 C CNN
@@ -139,7 +139,7 @@ F 3 "~" H 3050 3800 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L Device:Thermistor_PTC TH3
+L bmsLV-rescue:Thermistor_PTC-Device TH3
 U 1 1 606266F5
 P 3450 3800
 F 0 "TH3" V 3685 3800 50  0000 C CNN
@@ -150,7 +150,7 @@ F 3 "~" H 3450 3800 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L Device:Thermistor_PTC TH4
+L bmsLV-rescue:Thermistor_PTC-Device TH4
 U 1 1 6062692C
 P 3850 3800
 F 0 "TH4" V 4085 3800 50  0000 C CNN
@@ -161,7 +161,7 @@ F 3 "~" H 3850 3800 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L Device:Thermistor_PTC TH5
+L bmsLV-rescue:Thermistor_PTC-Device TH5
 U 1 1 60626CD3
 P 4250 3800
 F 0 "TH5" V 4485 3800 50  0000 C CNN
@@ -172,7 +172,7 @@ F 3 "~" H 4250 3800 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L Device:Thermistor_PTC TH6
+L bmsLV-rescue:Thermistor_PTC-Device TH6
 U 1 1 60627523
 P 4650 3800
 F 0 "TH6" V 4885 3800 50  0000 C CNN
@@ -233,7 +233,7 @@ Connection ~ 3650 4100
 Wire Wire Line
 	3650 4100 3850 4100
 $Comp
-L power:GND #PWR058
+L bmsLV-rescue:GND-power #PWR058
 U 1 1 6062C049
 P 3650 4150
 F 0 "#PWR058" H 3650 3900 50  0001 C CNN
@@ -256,7 +256,7 @@ Wire Wire Line
 Wire Wire Line
 	4850 3500 4850 3600
 $Comp
-L Device:C_Small C30
+L bmsLV-rescue:C_Small-Device C30
 U 1 1 606327DA
 P 4850 3700
 F 0 "C30" H 4942 3746 50  0000 L CNN
@@ -269,7 +269,7 @@ $EndComp
 Wire Wire Line
 	4850 3800 4850 3850
 $Comp
-L power:GND #PWR059
+L bmsLV-rescue:GND-power #PWR059
 U 1 1 606341EE
 P 4850 3850
 F 0 "#PWR059" H 4850 3600 50  0001 C CNN
@@ -280,7 +280,7 @@ F 3 "" H 4850 3850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C_Small C31
+L bmsLV-rescue:C_Small-Device C31
 U 1 1 6063CCC6
 P 5150 3700
 F 0 "C31" H 5242 3746 50  0000 L CNN
@@ -293,7 +293,7 @@ $EndComp
 Wire Wire Line
 	5150 3800 5150 3850
 $Comp
-L power:GND #PWR060
+L bmsLV-rescue:GND-power #PWR060
 U 1 1 6063CCCD
 P 5150 3850
 F 0 "#PWR060" H 5150 3600 50  0001 C CNN
@@ -306,7 +306,7 @@ $EndComp
 Wire Wire Line
 	5150 3200 5150 3600
 $Comp
-L Device:C_Small C32
+L bmsLV-rescue:C_Small-Device C32
 U 1 1 6063DBA9
 P 5450 3700
 F 0 "C32" H 5542 3746 50  0000 L CNN
@@ -319,7 +319,7 @@ $EndComp
 Wire Wire Line
 	5450 3800 5450 3850
 $Comp
-L power:GND #PWR061
+L bmsLV-rescue:GND-power #PWR061
 U 1 1 6063DBB0
 P 5450 3850
 F 0 "#PWR061" H 5450 3600 50  0001 C CNN
@@ -332,7 +332,7 @@ $EndComp
 Wire Wire Line
 	5450 2900 5450 3600
 $Comp
-L Device:C_Small C33
+L bmsLV-rescue:C_Small-Device C33
 U 1 1 6063E87B
 P 5750 3700
 F 0 "C33" H 5842 3746 50  0000 L CNN
@@ -345,7 +345,7 @@ $EndComp
 Wire Wire Line
 	5750 3800 5750 3850
 $Comp
-L power:GND #PWR062
+L bmsLV-rescue:GND-power #PWR062
 U 1 1 6063E882
 P 5750 3850
 F 0 "#PWR062" H 5750 3600 50  0001 C CNN
@@ -358,7 +358,7 @@ $EndComp
 Wire Wire Line
 	5750 2600 5750 3600
 $Comp
-L Device:C_Small C34
+L bmsLV-rescue:C_Small-Device C34
 U 1 1 6063F5AA
 P 6050 3700
 F 0 "C34" H 6142 3746 50  0000 L CNN
@@ -371,7 +371,7 @@ $EndComp
 Wire Wire Line
 	6050 3800 6050 3850
 $Comp
-L power:GND #PWR063
+L bmsLV-rescue:GND-power #PWR063
 U 1 1 6063F5B1
 P 6050 3850
 F 0 "#PWR063" H 6050 3600 50  0001 C CNN
@@ -384,7 +384,7 @@ $EndComp
 Wire Wire Line
 	6050 2300 6050 3600
 $Comp
-L Device:C_Small C35
+L bmsLV-rescue:C_Small-Device C35
 U 1 1 60640F90
 P 6350 3700
 F 0 "C35" H 6442 3746 50  0000 L CNN
@@ -397,7 +397,7 @@ $EndComp
 Wire Wire Line
 	6350 3800 6350 3850
 $Comp
-L power:GND #PWR064
+L bmsLV-rescue:GND-power #PWR064
 U 1 1 60640F97
 P 6350 3850
 F 0 "#PWR064" H 6350 3600 50  0001 C CNN
@@ -440,7 +440,7 @@ Term_5
 Text GLabel 6350 1900 1    50   Input ~ 0
 Term_6
 $Comp
-L power:+3.3V #PWR052
+L bmsLV-rescue:+3.3V-power #PWR052
 U 1 1 6064D34D
 P 2000 1950
 F 0 "#PWR052" H 2000 1800 50  0001 C CNN
@@ -451,7 +451,7 @@ F 3 "" H 2000 1950 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3.3V #PWR053
+L bmsLV-rescue:+3.3V-power #PWR053
 U 1 1 6064E1BD
 P 2000 2250
 F 0 "#PWR053" H 2000 2100 50  0001 C CNN
@@ -462,7 +462,7 @@ F 3 "" H 2000 2250 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3.3V #PWR054
+L bmsLV-rescue:+3.3V-power #PWR054
 U 1 1 6064EFA4
 P 2000 2550
 F 0 "#PWR054" H 2000 2400 50  0001 C CNN
@@ -473,7 +473,7 @@ F 3 "" H 2000 2550 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3.3V #PWR055
+L bmsLV-rescue:+3.3V-power #PWR055
 U 1 1 60650F26
 P 2000 2850
 F 0 "#PWR055" H 2000 2700 50  0001 C CNN
@@ -484,7 +484,7 @@ F 3 "" H 2000 2850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3.3V #PWR056
+L bmsLV-rescue:+3.3V-power #PWR056
 U 1 1 60651C4E
 P 2000 3150
 F 0 "#PWR056" H 2000 3000 50  0001 C CNN
@@ -495,7 +495,7 @@ F 3 "" H 2000 3150 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3.3V #PWR057
+L bmsLV-rescue:+3.3V-power #PWR057
 U 1 1 60652A7D
 P 2000 3450
 F 0 "#PWR057" H 2000 3300 50  0001 C CNN

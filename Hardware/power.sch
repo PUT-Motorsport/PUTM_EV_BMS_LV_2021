@@ -25,7 +25,7 @@ F 3 "http://www.ti.com/lit/ds/symlink/lm2596.pdf" H 3450 2250 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C_Small C12
+L bmsLV-rescue:C_Small-Device C12
 U 1 1 5FADDCE9
 P 2800 2500
 F 0 "C12" H 2892 2546 50  0000 L CNN
@@ -36,7 +36,7 @@ F 3 "~" H 2800 2500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:L_Small L2
+L bmsLV-rescue:L_Small-Device L2
 U 1 1 5FADEE69
 P 4650 2350
 F 0 "L2" V 4835 2350 50  0000 C CNN
@@ -47,7 +47,7 @@ F 3 "~" H 4650 2350 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Device:CP_Small C11
+L bmsLV-rescue:CP_Small-Device C11
 U 1 1 5FAE0A9C
 P 2600 2500
 F 0 "C11" H 2688 2546 50  0000 L CNN
@@ -58,7 +58,7 @@ F 3 "~" H 2600 2500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:CP_Small C15
+L bmsLV-rescue:CP_Small-Device C15
 U 1 1 5FAE3D09
 P 5000 2450
 F 0 "C15" H 5088 2496 50  0000 L CNN
@@ -69,7 +69,7 @@ F 3 "~" H 5000 2450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:D_Schottky D7
+L bmsLV-rescue:D_Schottky-Device D7
 U 1 1 5FAE479F
 P 4250 2500
 F 0 "D7" V 4204 2579 50  0000 L CNN
@@ -113,7 +113,7 @@ Wire Wire Line
 Wire Wire Line
 	3450 2850 3450 2950
 $Comp
-L power:GND #PWR025
+L bmsLV-rescue:GND-power #PWR025
 U 1 1 5FAED334
 P 3450 2950
 F 0 "#PWR025" H 3450 2700 50  0001 C CNN
@@ -124,7 +124,7 @@ F 3 "" H 3450 2950 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:Fuse F1
+L bmsLV-rescue:Fuse-Device F1
 U 1 1 5FAEFFDF
 P 1350 2150
 F 0 "F1" V 1153 2150 50  0000 C CNN
@@ -139,7 +139,7 @@ Wire Wire Line
 Wire Wire Line
 	1500 2150 1550 2150
 $Comp
-L Device:D_Schottky D5
+L bmsLV-rescue:D_Schottky-Device D5
 U 1 1 5FAF1827
 P 1550 2300
 F 0 "D5" V 1504 2379 50  0000 L CNN
@@ -153,7 +153,7 @@ Connection ~ 1550 2150
 Wire Wire Line
 	1550 2450 1550 2850
 $Comp
-L Regulator_Linear:LM1117-3.3 U2
+L bmsLV-rescue:LM1117-3.3-Regulator_Linear U2
 U 1 1 5FAF5A27
 P 3400 3700
 F 0 "U2" H 3400 3942 50  0000 C CNN
@@ -164,7 +164,7 @@ F 3 "http://www.ti.com/lit/ds/symlink/lm1117.pdf" H 3400 3700 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C_Small C13
+L bmsLV-rescue:C_Small-Device C13
 U 1 1 5FAF6BC0
 P 2800 3800
 F 0 "C13" H 2892 3846 50  0000 L CNN
@@ -175,7 +175,7 @@ F 3 "~" H 2800 3800 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C_Small C14
+L bmsLV-rescue:C_Small-Device C14
 U 1 1 5FAF733B
 P 4000 3800
 F 0 "C14" H 4092 3846 50  0000 L CNN
@@ -207,7 +207,7 @@ Wire Wire Line
 Wire Wire Line
 	3400 4000 3400 4050
 $Comp
-L power:GND #PWR024
+L bmsLV-rescue:GND-power #PWR024
 U 1 1 5FAFB775
 P 3400 4050
 F 0 "#PWR024" H 3400 3800 50  0001 C CNN
@@ -218,7 +218,7 @@ F 3 "" H 3400 4050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+5V #PWR023
+L bmsLV-rescue:+5V-power #PWR023
 U 1 1 5FAFC4B2
 P 2650 3650
 F 0 "#PWR023" H 2650 3500 50  0001 C CNN
@@ -229,7 +229,7 @@ F 3 "" H 2650 3650 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3.3V #PWR026
+L bmsLV-rescue:+3.3V-power #PWR026
 U 1 1 5FAFCB57
 P 4250 3550
 F 0 "#PWR026" H 4250 3400 50  0001 C CNN
@@ -240,7 +240,7 @@ F 3 "" H 4250 3550 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:D_Schottky D6
+L bmsLV-rescue:D_Schottky-Device D6
 U 1 1 5FFC9BA8
 P 2400 3700
 F 0 "D6" V 2354 3779 50  0000 L CNN
@@ -251,7 +251,7 @@ F 3 "~" H 2400 3700 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L power:+5VD #PWR027
+L bmsLV-rescue:+5VD-power #PWR027
 U 1 1 5FFCAC1E
 P 5800 2350
 F 0 "#PWR027" H 5800 2200 50  0001 C CNN
@@ -266,7 +266,7 @@ Wire Wire Line
 Wire Wire Line
 	2150 3700 2150 3650
 $Comp
-L power:+5VD #PWR022
+L bmsLV-rescue:+5VD-power #PWR022
 U 1 1 5FFCC30E
 P 2150 3650
 F 0 "#PWR022" H 2150 3500 50  0001 C CNN
@@ -284,7 +284,7 @@ Connection ~ 2650 3700
 Wire Wire Line
 	2650 3700 2800 3700
 $Comp
-L Device:C_Small C9
+L bmsLV-rescue:C_Small-Device C9
 U 1 1 5FFCD640
 P 1950 2500
 F 0 "C9" H 2042 2546 50  0000 L CNN
@@ -295,7 +295,7 @@ F 3 "~" H 1950 2500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C_Small C10
+L bmsLV-rescue:C_Small-Device C10
 U 1 1 5FFCE3B8
 P 2300 2500
 F 0 "C10" H 2392 2546 50  0000 L CNN
@@ -306,7 +306,7 @@ F 3 "~" H 2300 2500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:Ferrite_Bead_Small FB1
+L bmsLV-rescue:Ferrite_Bead_Small-Device FB1
 U 1 1 5FFCEC0C
 P 2150 2150
 F 0 "FB1" V 1913 2150 50  0000 C CNN
@@ -363,7 +363,7 @@ Connection ~ 2800 2850
 Wire Wire Line
 	2800 2850 2950 2850
 $Comp
-L power:VCC #PWR0103
+L bmsLV-rescue:VCC-power #PWR0103
 U 1 1 5FFFB3C9
 P 1050 2150
 F 0 "#PWR0103" H 1050 2000 50  0001 C CNN

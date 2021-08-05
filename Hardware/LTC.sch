@@ -31,7 +31,7 @@ Wire Wire Line
 Wire Wire Line
 	3200 8550 3200 9600
 $Comp
-L power:GND #PWR035
+L bmsLV-rescue:GND-power #PWR035
 U 1 1 601D8D8A
 P 3050 8600
 F 0 "#PWR035" H 3050 8350 50  0001 C CNN
@@ -59,7 +59,7 @@ Wire Wire Line
 Wire Wire Line
 	3950 9400 4100 9400
 $Comp
-L Device:R_Small R23
+L bmsLV-rescue:R_Small-Device R23
 U 1 1 601C63CF
 P 3850 9400
 F 0 "R23" V 3654 9400 50  0000 C CNN
@@ -81,7 +81,7 @@ Wire Wire Line
 Wire Wire Line
 	3600 9400 3750 9400
 $Comp
-L Device:D_Zener_Small D15
+L bmsLV-rescue:D_Zener_Small-Device D15
 U 1 1 601C63BB
 P 3850 9500
 F 0 "D15" H 3850 9295 50  0000 C CNN
@@ -97,7 +97,7 @@ Connection ~ 3600 9400
 Wire Wire Line
 	3600 9400 3600 9500
 $Comp
-L Device:R_Small R16
+L bmsLV-rescue:R_Small-Device R16
 U 1 1 601C63B0
 P 3600 8700
 F 0 "R16" H 3659 8746 50  0000 L CNN
@@ -108,7 +108,7 @@ F 3 "~" H 3600 8700 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR041
+L bmsLV-rescue:GND-power #PWR041
 U 1 1 601C63AA
 P 4250 8800
 F 0 "#PWR041" H 4250 8550 50  0001 C CNN
@@ -121,7 +121,7 @@ $EndComp
 Wire Wire Line
 	4250 8750 4250 8800
 $Comp
-L Device:R_Small R29
+L bmsLV-rescue:R_Small-Device R29
 U 1 1 601C63A0
 P 4050 8550
 F 0 "R29" V 4246 8550 50  0000 C CNN
@@ -132,7 +132,7 @@ F 3 "~" H 4050 8550 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Device:C_Small C23
+L bmsLV-rescue:C_Small-Device C23
 U 1 1 601C6399
 P 4250 8650
 F 0 "C23" H 4158 8604 50  0000 R CNN
@@ -177,10 +177,6 @@ Wire Wire Line
 Wire Wire Line
 	4100 3800 4900 3800
 Wire Wire Line
-	4900 3800 4900 3000
-Wire Wire Line
-	4850 3300 4850 2650
-Wire Wire Line
 	3050 8550 3050 8200
 Wire Wire Line
 	4100 8000 4100 8350
@@ -200,7 +196,7 @@ Wire Wire Line
 Wire Wire Line
 	3950 8350 4100 8350
 $Comp
-L Device:R_Small R22
+L bmsLV-rescue:R_Small-Device R22
 U 1 1 6011B81C
 P 3850 8350
 F 0 "R22" V 3654 8350 50  0000 C CNN
@@ -222,7 +218,7 @@ Wire Wire Line
 Wire Wire Line
 	3600 8350 3750 8350
 $Comp
-L Device:D_Zener_Small D14
+L bmsLV-rescue:D_Zener_Small-Device D14
 U 1 1 6011B808
 P 3850 8450
 F 0 "D14" H 3850 8245 50  0000 C CNN
@@ -240,7 +236,7 @@ Wire Wire Line
 Wire Wire Line
 	3600 8350 3200 8350
 $Comp
-L power:GND #PWR040
+L bmsLV-rescue:GND-power #PWR040
 U 1 1 6011B7F7
 P 4250 7750
 F 0 "#PWR040" H 4250 7500 50  0001 C CNN
@@ -255,7 +251,7 @@ Wire Wire Line
 Wire Wire Line
 	3050 7500 3050 7900
 $Comp
-L Device:R_Small R28
+L bmsLV-rescue:R_Small-Device R28
 U 1 1 6011B7ED
 P 4050 7500
 F 0 "R28" V 4246 7500 50  0000 C CNN
@@ -266,7 +262,7 @@ F 3 "~" H 4050 7500 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Device:C_Small C22
+L bmsLV-rescue:C_Small-Device C22
 U 1 1 6011B7E6
 P 4250 7600
 F 0 "C22" H 4158 7554 50  0000 R CNN
@@ -277,7 +273,7 @@ F 3 "~" H 4250 7600 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L Device:Battery_Cell BT6
+L bmsLV-rescue:Battery_Cell-Device BT6
 U 1 1 6011B7E0
 P 3050 8100
 F 0 "BT6" H 3168 8196 50  0000 L CNN
@@ -308,7 +304,7 @@ Wire Wire Line
 Wire Wire Line
 	3950 7300 4100 7300
 $Comp
-L Device:R_Small R21
+L bmsLV-rescue:R_Small-Device R21
 U 1 1 60111131
 P 3850 7300
 F 0 "R21" V 3654 7300 50  0000 C CNN
@@ -330,7 +326,7 @@ Wire Wire Line
 Wire Wire Line
 	3600 7300 3750 7300
 $Comp
-L Device:D_Zener_Small D13
+L bmsLV-rescue:D_Zener_Small-Device D13
 U 1 1 6011111D
 P 3850 7400
 F 0 "D13" H 3850 7195 50  0000 C CNN
@@ -348,7 +344,7 @@ Wire Wire Line
 Wire Wire Line
 	3600 7300 3200 7300
 $Comp
-L power:GND #PWR039
+L bmsLV-rescue:GND-power #PWR039
 U 1 1 6011110C
 P 4250 6700
 F 0 "#PWR039" H 4250 6450 50  0001 C CNN
@@ -363,7 +359,7 @@ Wire Wire Line
 Wire Wire Line
 	3050 6450 3050 6850
 $Comp
-L Device:R_Small R27
+L bmsLV-rescue:R_Small-Device R27
 U 1 1 60111102
 P 4050 6450
 F 0 "R27" V 4246 6450 50  0000 C CNN
@@ -374,7 +370,7 @@ F 3 "~" H 4050 6450 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Device:C_Small C21
+L bmsLV-rescue:C_Small-Device C21
 U 1 1 601110FB
 P 4250 6550
 F 0 "C21" H 4158 6504 50  0000 R CNN
@@ -385,7 +381,7 @@ F 3 "~" H 4250 6550 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L Device:Battery_Cell BT5
+L bmsLV-rescue:Battery_Cell-Device BT5
 U 1 1 601110F5
 P 3050 7050
 F 0 "BT5" H 3168 7146 50  0000 L CNN
@@ -416,7 +412,7 @@ Wire Wire Line
 Wire Wire Line
 	3950 6250 4100 6250
 $Comp
-L Device:R_Small R20
+L bmsLV-rescue:R_Small-Device R20
 U 1 1 6010625F
 P 3850 6250
 F 0 "R20" V 3654 6250 50  0000 C CNN
@@ -438,7 +434,7 @@ Wire Wire Line
 Wire Wire Line
 	3600 6250 3750 6250
 $Comp
-L Device:D_Zener_Small D12
+L bmsLV-rescue:D_Zener_Small-Device D12
 U 1 1 6010624B
 P 3850 6350
 F 0 "D12" H 3850 6145 50  0000 C CNN
@@ -456,7 +452,7 @@ Wire Wire Line
 Wire Wire Line
 	3600 6250 3200 6250
 $Comp
-L power:GND #PWR038
+L bmsLV-rescue:GND-power #PWR038
 U 1 1 6010623A
 P 4250 5650
 F 0 "#PWR038" H 4250 5400 50  0001 C CNN
@@ -471,7 +467,7 @@ Wire Wire Line
 Wire Wire Line
 	3050 5400 3050 5800
 $Comp
-L Device:R_Small R26
+L bmsLV-rescue:R_Small-Device R26
 U 1 1 60106230
 P 4050 5400
 F 0 "R26" V 4246 5400 50  0000 C CNN
@@ -482,7 +478,7 @@ F 3 "~" H 4050 5400 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Device:C_Small C20
+L bmsLV-rescue:C_Small-Device C20
 U 1 1 60106229
 P 4250 5500
 F 0 "C20" H 4158 5454 50  0000 R CNN
@@ -493,7 +489,7 @@ F 3 "~" H 4250 5500 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L Device:Battery_Cell BT4
+L bmsLV-rescue:Battery_Cell-Device BT4
 U 1 1 60106223
 P 3050 6000
 F 0 "BT4" H 3168 6096 50  0000 L CNN
@@ -524,7 +520,7 @@ Wire Wire Line
 Wire Wire Line
 	3950 5200 4100 5200
 $Comp
-L Device:R_Small R19
+L bmsLV-rescue:R_Small-Device R19
 U 1 1 600FD851
 P 3850 5200
 F 0 "R19" V 3654 5200 50  0000 C CNN
@@ -546,7 +542,7 @@ Wire Wire Line
 Wire Wire Line
 	3600 5200 3750 5200
 $Comp
-L Device:D_Zener_Small D11
+L bmsLV-rescue:D_Zener_Small-Device D11
 U 1 1 600FD83D
 P 3850 5300
 F 0 "D11" H 3850 5095 50  0000 C CNN
@@ -564,7 +560,7 @@ Wire Wire Line
 Wire Wire Line
 	3600 5200 3200 5200
 $Comp
-L power:GND #PWR037
+L bmsLV-rescue:GND-power #PWR037
 U 1 1 600FD82C
 P 4250 4600
 F 0 "#PWR037" H 4250 4350 50  0001 C CNN
@@ -579,7 +575,7 @@ Wire Wire Line
 Wire Wire Line
 	3050 4350 3050 4750
 $Comp
-L Device:R_Small R25
+L bmsLV-rescue:R_Small-Device R25
 U 1 1 600FD822
 P 4050 4350
 F 0 "R25" V 4246 4350 50  0000 C CNN
@@ -590,7 +586,7 @@ F 3 "~" H 4050 4350 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Device:C_Small C19
+L bmsLV-rescue:C_Small-Device C19
 U 1 1 600FD81B
 P 4250 4450
 F 0 "C19" H 4158 4404 50  0000 R CNN
@@ -601,7 +597,7 @@ F 3 "~" H 4250 4450 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L Device:Battery_Cell BT3
+L bmsLV-rescue:Battery_Cell-Device BT3
 U 1 1 600FD815
 P 3050 4950
 F 0 "BT3" H 3168 5046 50  0000 L CNN
@@ -632,7 +628,7 @@ Wire Wire Line
 Wire Wire Line
 	3950 4150 4100 4150
 $Comp
-L Device:R_Small R18
+L bmsLV-rescue:R_Small-Device R18
 U 1 1 5FFC8479
 P 3850 4150
 F 0 "R18" V 3654 4150 50  0000 C CNN
@@ -654,7 +650,7 @@ Wire Wire Line
 Wire Wire Line
 	3600 4150 3750 4150
 $Comp
-L Device:D_Zener_Small D10
+L bmsLV-rescue:D_Zener_Small-Device D10
 U 1 1 5FFC845F
 P 3850 4250
 F 0 "D10" H 3850 4045 50  0000 C CNN
@@ -672,7 +668,7 @@ Wire Wire Line
 Wire Wire Line
 	3600 4150 3200 4150
 $Comp
-L power:GND #PWR036
+L bmsLV-rescue:GND-power #PWR036
 U 1 1 5FFC24FD
 P 4250 3550
 F 0 "#PWR036" H 4250 3300 50  0001 C CNN
@@ -689,7 +685,7 @@ Wire Wire Line
 Wire Wire Line
 	4250 3300 4850 3300
 $Comp
-L Device:R_Small R24
+L bmsLV-rescue:R_Small-Device R24
 U 1 1 5FFBF3A5
 P 4050 3300
 F 0 "R24" V 4246 3300 50  0000 C CNN
@@ -700,7 +696,7 @@ F 3 "~" H 4050 3300 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Device:C_Small C18
+L bmsLV-rescue:C_Small-Device C18
 U 1 1 5FFBF39B
 P 4250 3400
 F 0 "C18" H 4158 3354 50  0000 R CNN
@@ -713,7 +709,7 @@ $EndComp
 Wire Wire Line
 	4300 2450 4300 2500
 $Comp
-L Device:Battery_Cell BT2
+L bmsLV-rescue:Battery_Cell-Device BT2
 U 1 1 5FFCD1E6
 P 3050 3900
 F 0 "BT2" H 3168 3996 50  0000 L CNN
@@ -724,7 +720,7 @@ F 3 "~" V 3050 3960 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:Battery_Cell BT1
+L bmsLV-rescue:Battery_Cell-Device BT1
 U 1 1 5FFBB0A9
 P 3050 2850
 F 0 "BT1" H 3168 2946 50  0000 L CNN
@@ -744,7 +740,7 @@ Wire Wire Line
 Wire Wire Line
 	3600 3100 3200 3100
 $Comp
-L Device:R_Small R30
+L bmsLV-rescue:R_Small-Device R30
 U 1 1 5FF96984
 P 4150 2250
 F 0 "R30" V 4346 2250 50  0000 C CNN
@@ -757,7 +753,7 @@ $EndComp
 Wire Wire Line
 	4250 2250 4300 2250
 $Comp
-L power:GND #PWR042
+L bmsLV-rescue:GND-power #PWR042
 U 1 1 5FF957ED
 P 4300 2500
 F 0 "#PWR042" H 4300 2250 50  0001 C CNN
@@ -768,7 +764,7 @@ F 3 "" H 4300 2500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C_Small C24
+L bmsLV-rescue:C_Small-Device C24
 U 1 1 5FF93E07
 P 4300 2350
 F 0 "C24" H 4208 2304 50  0000 R CNN
@@ -843,7 +839,7 @@ Connection ~ 6450 4300
 Wire Wire Line
 	6450 4300 5750 4300
 $Comp
-L power:GND #PWR045
+L bmsLV-rescue:GND-power #PWR045
 U 1 1 60166D55
 P 6450 4350
 F 0 "#PWR045" H 6450 4100 50  0001 C CNN
@@ -860,7 +856,7 @@ Wire Wire Line
 Wire Wire Line
 	7500 3250 7500 3300
 $Comp
-L Device:C_Small C27
+L bmsLV-rescue:C_Small-Device C27
 U 1 1 6019F5F8
 P 7500 3400
 F 0 "C27" H 7592 3446 50  0000 L CNN
@@ -878,7 +874,7 @@ Wire Wire Line
 Wire Wire Line
 	7150 3450 7150 3550
 $Comp
-L Device:C_Small C26
+L bmsLV-rescue:C_Small-Device C26
 U 1 1 601E809B
 P 7300 3500
 F 0 "C26" H 7392 3546 50  0000 L CNN
@@ -902,7 +898,7 @@ Wire Wire Line
 Wire Wire Line
 	7750 3650 7750 3750
 $Comp
-L power:GND #PWR050
+L bmsLV-rescue:GND-power #PWR050
 U 1 1 6022F4BC
 P 7750 3750
 F 0 "#PWR050" H 7750 3500 50  0001 C CNN
@@ -915,7 +911,7 @@ $EndComp
 Wire Wire Line
 	7750 3650 7750 3500
 $Comp
-L Device:C_Small C28
+L bmsLV-rescue:C_Small-Device C28
 U 1 1 6023E9B3
 P 7750 3400
 F 0 "C28" H 7842 3446 50  0000 L CNN
@@ -931,7 +927,7 @@ Wire Wire Line
 	7750 3150 7750 3300
 Connection ~ 7750 3650
 $Comp
-L Device:Q_NPN_BCE Q9
+L bmsLV-rescue:Q_NPN_BCE-Device Q9
 U 1 1 602887F0
 P 8200 2900
 F 0 "Q9" H 8391 2946 50  0000 L CNN
@@ -944,7 +940,7 @@ $EndComp
 Wire Wire Line
 	8000 3050 8000 2900
 $Comp
-L Device:C_Small C29
+L bmsLV-rescue:C_Small-Device C29
 U 1 1 602D5887
 P 8650 2600
 F 0 "C29" V 8879 2600 50  0000 C CNN
@@ -958,7 +954,7 @@ Connection ~ 8300 2600
 Wire Wire Line
 	8300 2600 8300 2700
 $Comp
-L power:GND #PWR051
+L bmsLV-rescue:GND-power #PWR051
 U 1 1 60321616
 P 8900 2600
 F 0 "#PWR051" H 8900 2350 50  0001 C CNN
@@ -971,7 +967,7 @@ $EndComp
 Wire Wire Line
 	8300 2300 8300 2600
 $Comp
-L Device:R_Small R32
+L bmsLV-rescue:R_Small-Device R32
 U 1 1 60331F67
 P 8300 2200
 F 0 "R32" H 8359 2246 50  0000 L CNN
@@ -982,7 +978,7 @@ F 3 "~" H 8300 2200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R_Small R15
+L bmsLV-rescue:R_Small-Device R15
 U 1 1 6035282B
 P 3600 7650
 F 0 "R15" H 3659 7696 50  0000 L CNN
@@ -993,7 +989,7 @@ F 3 "~" H 3600 7650 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R_Small R14
+L bmsLV-rescue:R_Small-Device R14
 U 1 1 60370C7C
 P 3600 6600
 F 0 "R14" H 3659 6646 50  0000 L CNN
@@ -1004,9 +1000,11 @@ F 3 "~" H 3600 6600 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector:Conn_01x01_Female J6
+L bmsLV-rescue:Conn_01x01_Female-Connector J6
 U 1 1 6043A25B
 P 2850 2250
+AR Path="/6043A25B" Ref="J6"  Part="1" 
+AR Path="/5FF86554/6043A25B" Ref="J6"  Part="1" 
 F 0 "J6" H 2878 2276 50  0000 L CNN
 F 1 "Conn_01x01_Female" H 2878 2185 50  0000 L CNN
 F 2 "CellPad:CellPad" H 2850 2250 50  0001 C CNN
@@ -1016,9 +1014,11 @@ F 3 "~" H 2850 2250 50  0001 C CNN
 $EndComp
 Connection ~ 3050 2250
 $Comp
-L Connector:Conn_01x01_Female J7
+L bmsLV-rescue:Conn_01x01_Female-Connector J7
 U 1 1 6044A31A
 P 2850 3300
+AR Path="/6044A31A" Ref="J7"  Part="1" 
+AR Path="/5FF86554/6044A31A" Ref="J7"  Part="1" 
 F 0 "J7" H 2742 3075 50  0000 C CNN
 F 1 "Conn_01x01_Female" H 2742 3166 50  0000 C CNN
 F 2 "CellPad:CellPad" H 2850 3300 50  0001 C CNN
@@ -1027,9 +1027,11 @@ F 3 "~" H 2850 3300 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L Connector:Conn_01x01_Female J8
+L bmsLV-rescue:Conn_01x01_Female-Connector J8
 U 1 1 6044B5BA
 P 2850 4350
+AR Path="/6044B5BA" Ref="J8"  Part="1" 
+AR Path="/5FF86554/6044B5BA" Ref="J8"  Part="1" 
 F 0 "J8" H 2742 4125 50  0000 C CNN
 F 1 "Conn_01x01_Female" H 2742 4216 50  0000 C CNN
 F 2 "CellPad:CellPad" H 2850 4350 50  0001 C CNN
@@ -1038,9 +1040,11 @@ F 3 "~" H 2850 4350 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L Connector:Conn_01x01_Female J9
+L bmsLV-rescue:Conn_01x01_Female-Connector J9
 U 1 1 6044C075
 P 2850 5400
+AR Path="/6044C075" Ref="J9"  Part="1" 
+AR Path="/5FF86554/6044C075" Ref="J9"  Part="1" 
 F 0 "J9" H 2742 5175 50  0000 C CNN
 F 1 "Conn_01x01_Female" H 2742 5266 50  0000 C CNN
 F 2 "CellPad:CellPad" H 2850 5400 50  0001 C CNN
@@ -1049,9 +1053,11 @@ F 3 "~" H 2850 5400 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L Connector:Conn_01x01_Female J10
+L bmsLV-rescue:Conn_01x01_Female-Connector J10
 U 1 1 6044D224
 P 2850 6450
+AR Path="/6044D224" Ref="J10"  Part="1" 
+AR Path="/5FF86554/6044D224" Ref="J10"  Part="1" 
 F 0 "J10" H 2742 6225 50  0000 C CNN
 F 1 "Conn_01x01_Female" H 2742 6316 50  0000 C CNN
 F 2 "CellPad:CellPad" H 2850 6450 50  0001 C CNN
@@ -1060,9 +1066,11 @@ F 3 "~" H 2850 6450 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L Connector:Conn_01x01_Female J11
+L bmsLV-rescue:Conn_01x01_Female-Connector J11
 U 1 1 6044DF34
 P 2850 7500
+AR Path="/6044DF34" Ref="J11"  Part="1" 
+AR Path="/5FF86554/6044DF34" Ref="J11"  Part="1" 
 F 0 "J11" H 2742 7275 50  0000 C CNN
 F 1 "Conn_01x01_Female" H 2742 7366 50  0000 C CNN
 F 2 "CellPad:CellPad" H 2850 7500 50  0001 C CNN
@@ -1071,9 +1079,11 @@ F 3 "~" H 2850 7500 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L Connector:Conn_01x01_Female J12
+L bmsLV-rescue:Conn_01x01_Female-Connector J12
 U 1 1 6044ED17
 P 2850 8550
+AR Path="/6044ED17" Ref="J12"  Part="1" 
+AR Path="/5FF86554/6044ED17" Ref="J12"  Part="1" 
 F 0 "J12" H 2742 8325 50  0000 C CNN
 F 1 "Conn_01x01_Female" H 2742 8416 50  0000 C CNN
 F 2 "CellPad:CellPad" H 2850 8550 50  0001 C CNN
@@ -1098,7 +1108,7 @@ Connection ~ 3850 1700
 Wire Wire Line
 	3850 1700 3850 1350
 $Comp
-L Device:R_Small R31
+L bmsLV-rescue:R_Small-Device R31
 U 1 1 604D5C59
 P 4350 1700
 F 0 "R31" V 4154 1700 50  0000 C CNN
@@ -1120,7 +1130,7 @@ Connection ~ 4750 1700
 Wire Wire Line
 	4750 1700 5650 1700
 $Comp
-L Device:C_Small C25
+L bmsLV-rescue:C_Small-Device C25
 U 1 1 6051CA4B
 P 4750 1850
 F 0 "C25" H 4842 1896 50  0000 L CNN
@@ -1133,7 +1143,7 @@ $EndComp
 Wire Wire Line
 	4750 1950 4750 2000
 $Comp
-L power:GND #PWR043
+L bmsLV-rescue:GND-power #PWR043
 U 1 1 6052F649
 P 4750 2000
 F 0 "#PWR043" H 4750 1750 50  0001 C CNN
@@ -1144,7 +1154,7 @@ F 3 "" H 4750 2000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR046
+L bmsLV-rescue:GND-power #PWR046
 U 1 1 605E56B3
 P 7600 2450
 F 0 "#PWR046" H 7600 2200 50  0001 C CNN
@@ -1159,7 +1169,7 @@ Wire Wire Line
 Wire Wire Line
 	8750 2600 8900 2600
 $Comp
-L power:GND #PWR047
+L bmsLV-rescue:GND-power #PWR047
 U 1 1 605F8879
 P 7550 2550
 F 0 "#PWR047" H 7550 2300 50  0001 C CNN
@@ -1170,7 +1180,7 @@ F 3 "" H 7550 2550 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR048
+L bmsLV-rescue:GND-power #PWR048
 U 1 1 605F8ED2
 P 7600 2850
 F 0 "#PWR048" H 7600 2600 50  0001 C CNN
@@ -1181,7 +1191,7 @@ F 3 "" H 7600 2850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR049
+L bmsLV-rescue:GND-power #PWR049
 U 1 1 605F9ECA
 P 7550 2950
 F 0 "#PWR049" H 7550 2700 50  0001 C CNN
@@ -1196,7 +1206,7 @@ Wire Wire Line
 	3600 8600 3600 8450
 Connection ~ 3600 8450
 $Comp
-L Device:R_Small R42
+L bmsLV-rescue:R_Small-Device R42
 U 1 1 6044A16F
 P 3850 3350
 F 0 "R42" V 3654 3350 50  0000 C CNN
@@ -1207,11 +1217,11 @@ F 3 "~" H 3850 3350 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:LED_Small D18
+L bmsLV-rescue:LED_Small-Device D18
 U 1 1 6044B42B
 P 3850 3550
-F 0 "D18" H 3850 3785 50  0000 C CNN
-F 1 "LED_Small" H 3850 3694 50  0000 C CNN
+F 0 "D18" H 4000 3650 50  0000 C CNN
+F 1 "LED_Small" H 4100 3550 50  0000 C CNN
 F 2 "LED_SMD:LED_0805_2012Metric" V 3850 3550 50  0001 C CNN
 F 3 "~" V 3850 3550 50  0001 C CNN
 	1    3850 3550
@@ -1256,7 +1266,7 @@ Wire Wire Line
 	4150 8550 4250 8550
 Connection ~ 4250 8550
 $Comp
-L Device:R_Small R43
+L bmsLV-rescue:R_Small-Device R43
 U 1 1 607B74E7
 P 3850 4400
 F 0 "R43" V 3654 4400 50  0000 C CNN
@@ -1267,7 +1277,7 @@ F 3 "~" H 3850 4400 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:LED_Small D19
+L bmsLV-rescue:LED_Small-Device D19
 U 1 1 607B74ED
 P 3850 4600
 F 0 "D19" H 3850 4835 50  0000 C CNN
@@ -1284,7 +1294,7 @@ Wire Wire Line
 Wire Wire Line
 	3950 4400 3950 4600
 $Comp
-L Device:LED_Small D20
+L bmsLV-rescue:LED_Small-Device D20
 U 1 1 607CA194
 P 3850 5650
 F 0 "D20" H 3850 5885 50  0000 C CNN
@@ -1301,7 +1311,7 @@ Wire Wire Line
 Wire Wire Line
 	3950 5450 3950 5650
 $Comp
-L Device:LED_Small D21
+L bmsLV-rescue:LED_Small-Device D21
 U 1 1 607DD4B1
 P 3850 6700
 F 0 "D21" H 3850 6935 50  0000 C CNN
@@ -1318,7 +1328,7 @@ Wire Wire Line
 Wire Wire Line
 	3950 6500 3950 6700
 $Comp
-L Device:R_Small R46
+L bmsLV-rescue:R_Small-Device R46
 U 1 1 607F0E00
 P 3850 7550
 F 0 "R46" V 3654 7550 50  0000 C CNN
@@ -1329,7 +1339,7 @@ F 3 "~" H 3850 7550 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:LED_Small D22
+L bmsLV-rescue:LED_Small-Device D22
 U 1 1 607F0E06
 P 3850 7750
 F 0 "D22" H 3850 7985 50  0000 C CNN
@@ -1346,7 +1356,7 @@ Wire Wire Line
 Wire Wire Line
 	3950 7550 3950 7750
 $Comp
-L Device:R_Small R47
+L bmsLV-rescue:R_Small-Device R47
 U 1 1 60804E2A
 P 3850 8600
 F 0 "R47" V 3654 8600 50  0000 C CNN
@@ -1357,7 +1367,7 @@ F 3 "~" H 3850 8600 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:LED_Small D23
+L bmsLV-rescue:LED_Small-Device D23
 U 1 1 60804E30
 P 3850 8800
 F 0 "D23" H 3850 9035 50  0000 C CNN
@@ -1374,7 +1384,7 @@ Wire Wire Line
 Wire Wire Line
 	3950 8600 3950 8800
 $Comp
-L Device:R_Small R45
+L bmsLV-rescue:R_Small-Device R45
 U 1 1 607DD4AB
 P 3850 6500
 F 0 "R45" V 3654 6500 50  0000 C CNN
@@ -1385,7 +1395,7 @@ F 3 "~" H 3850 6500 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R_Small R44
+L bmsLV-rescue:R_Small-Device R44
 U 1 1 607CA18E
 P 3850 5450
 F 0 "R44" V 3654 5450 50  0000 C CNN
@@ -1396,7 +1406,7 @@ F 3 "~" H 3850 5450 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R_Small R48
+L bmsLV-rescue:R_Small-Device R48
 U 1 1 60413195
 P 7300 2450
 F 0 "R48" V 7104 2450 50  0000 C CNN
@@ -1407,7 +1417,7 @@ F 3 "~" H 7300 2450 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R_Small R49
+L bmsLV-rescue:R_Small-Device R49
 U 1 1 60413B7A
 P 7300 2550
 F 0 "R49" V 7104 2550 50  0000 C CNN
@@ -1433,7 +1443,7 @@ Wire Wire Line
 	8300 3150 8300 3100
 Connection ~ 7750 3150
 $Comp
-L Device:R_Small R50
+L bmsLV-rescue:R_Small-Device R50
 U 1 1 6052A5A7
 P 7300 2850
 F 0 "R50" V 7104 2850 50  0000 C CNN
@@ -1444,7 +1454,7 @@ F 3 "~" H 7300 2850 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R_Small R51
+L bmsLV-rescue:R_Small-Device R51
 U 1 1 6052CC05
 P 7300 2950
 F 0 "R51" V 7104 2950 50  0000 C CNN
@@ -1465,7 +1475,7 @@ Wire Wire Line
 Wire Wire Line
 	3850 1350 8300 1350
 $Comp
-L Device:R_Small R13
+L bmsLV-rescue:R_Small-Device R13
 U 1 1 6038EE9D
 P 3600 5550
 F 0 "R13" H 3659 5596 50  0000 L CNN
@@ -1476,7 +1486,7 @@ F 3 "~" H 3600 5550 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R_Small R12
+L bmsLV-rescue:R_Small-Device R12
 U 1 1 603AD261
 P 3600 4500
 F 0 "R12" H 3659 4546 50  0000 L CNN
@@ -1487,7 +1497,7 @@ F 3 "~" H 3600 4500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R_Small R11
+L bmsLV-rescue:R_Small-Device R11
 U 1 1 603CB5B0
 P 3600 3450
 F 0 "R11" H 3659 3496 50  0000 L CNN
@@ -1498,18 +1508,18 @@ F 3 "~" H 3600 3450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R_Small R53
+L bmsLV-rescue:R_Small-Device R53
 U 1 1 6041EC0C
 P 3400 3450
-F 0 "R53" H 3459 3496 50  0000 L CNN
-F 1 "68" H 3459 3405 50  0000 L CNN
+F 0 "R53" H 3200 3500 50  0000 L CNN
+F 1 "68" H 3250 3400 50  0000 L CNN
 F 2 "Resistor_SMD:R_2512_6332Metric" H 3400 3450 50  0001 C CNN
 F 3 "~" H 3400 3450 50  0001 C CNN
 	1    3400 3450
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R_Small R54
+L bmsLV-rescue:R_Small-Device R54
 U 1 1 6041FB52
 P 3400 4500
 F 0 "R54" H 3459 4546 50  0000 L CNN
@@ -1520,7 +1530,7 @@ F 3 "~" H 3400 4500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R_Small R55
+L bmsLV-rescue:R_Small-Device R55
 U 1 1 604222DA
 P 3400 5550
 F 0 "R55" H 3459 5596 50  0000 L CNN
@@ -1531,7 +1541,7 @@ F 3 "~" H 3400 5550 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R_Small R56
+L bmsLV-rescue:R_Small-Device R56
 U 1 1 60422B7A
 P 3400 6600
 F 0 "R56" H 3459 6646 50  0000 L CNN
@@ -1542,7 +1552,7 @@ F 3 "~" H 3400 6600 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R_Small R57
+L bmsLV-rescue:R_Small-Device R57
 U 1 1 6042368B
 P 3400 7650
 F 0 "R57" H 3459 7696 50  0000 L CNN
@@ -1553,7 +1563,7 @@ F 3 "~" H 3400 7650 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R_Small R58
+L bmsLV-rescue:R_Small-Device R58
 U 1 1 60424059
 P 3400 8700
 F 0 "R58" H 3459 8746 50  0000 L CNN
@@ -1602,7 +1612,7 @@ Wire Wire Line
 Wire Wire Line
 	3600 3100 3600 3350
 $Comp
-L Device:Q_NMOS_GSD Q2
+L bmsLV-rescue:Q_NMOS_GSD-Device Q2
 U 1 1 60708304
 P 3500 3850
 F 0 "Q2" H 3706 3896 50  0000 L CNN
@@ -1618,7 +1628,7 @@ Connection ~ 3600 4050
 Wire Wire Line
 	3600 4050 3600 4150
 $Comp
-L Device:Q_NMOS_GSD Q3
+L bmsLV-rescue:Q_NMOS_GSD-Device Q3
 U 1 1 60749739
 P 3500 4900
 F 0 "Q3" H 3706 4946 50  0000 L CNN
@@ -1636,7 +1646,7 @@ Wire Wire Line
 Wire Wire Line
 	3600 6100 3600 6150
 $Comp
-L Device:Q_NMOS_GSD Q4
+L bmsLV-rescue:Q_NMOS_GSD-Device Q4
 U 1 1 6078A524
 P 3500 5950
 F 0 "Q4" H 3706 5996 50  0000 L CNN
@@ -1652,7 +1662,7 @@ Wire Wire Line
 Wire Wire Line
 	3600 7150 3600 7200
 $Comp
-L Device:Q_NMOS_GSD Q5
+L bmsLV-rescue:Q_NMOS_GSD-Device Q5
 U 1 1 607A07CD
 P 3500 7000
 F 0 "Q5" H 3706 7046 50  0000 L CNN
@@ -1668,7 +1678,7 @@ Wire Wire Line
 Wire Wire Line
 	3600 8200 3600 8250
 $Comp
-L Device:Q_NMOS_GSD Q6
+L bmsLV-rescue:Q_NMOS_GSD-Device Q6
 U 1 1 607B6027
 P 3500 8050
 F 0 "Q6" H 3706 8096 50  0000 L CNN
@@ -1684,7 +1694,7 @@ Wire Wire Line
 Wire Wire Line
 	3600 9250 3600 9300
 $Comp
-L Device:Q_NMOS_GSD Q7
+L bmsLV-rescue:Q_NMOS_GSD-Device Q7
 U 1 1 607CBEDB
 P 3500 9100
 F 0 "Q7" H 3706 9146 50  0000 L CNN
@@ -1702,73 +1712,11 @@ Wire Wire Line
 Connection ~ 7150 3550
 Wire Wire Line
 	7150 3550 7150 3650
-$Comp
-L Connector:Conn_01x02_Male J16
-U 1 1 6042E497
-P 5300 1950
-F 0 "J16" V 5362 1994 50  0000 L CNN
-F 1 "Conn_01x02_Male" V 5453 1994 50  0000 L CNN
-F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 5300 1950 50  0001 C CNN
-F 3 "~" H 5300 1950 50  0001 C CNN
-	1    5300 1950
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	5850 2350 5300 2350
-Wire Wire Line
-	5300 2350 5300 2150
-Wire Wire Line
-	5200 2150 5200 2250
-Connection ~ 5200 2250
-Wire Wire Line
-	5200 2250 5850 2250
 Connection ~ 4300 2250
-Wire Wire Line
-	4300 2250 5200 2250
 $Comp
-L Connector:Conn_01x02_Male J15
-U 1 1 60474109
-P 4500 2550
-F 0 "J15" H 4608 2731 50  0000 C CNN
-F 1 "Conn_01x02_Male" H 4608 2640 50  0000 C CNN
-F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 4500 2550 50  0001 C CNN
-F 3 "~" H 4500 2550 50  0001 C CNN
-	1    4500 2550
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	5300 2350 4700 2350
-Wire Wire Line
-	4700 2350 4700 2550
-Connection ~ 5300 2350
-Wire Wire Line
-	4700 2650 4850 2650
-Connection ~ 4850 2650
-Wire Wire Line
-	4850 2650 4850 2450
-$Comp
-L Connector:Conn_01x02_Male J14
-U 1 1 604A2535
-P 4250 2900
-F 0 "J14" H 4358 3081 50  0000 C CNN
-F 1 "Conn_01x02_Male" H 4358 2990 50  0000 C CNN
-F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 4250 2900 50  0001 C CNN
-F 3 "~" H 4250 2900 50  0001 C CNN
-	1    4250 2900
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	4700 2350 4450 2350
-Connection ~ 4700 2350
-Connection ~ 4900 3000
-Wire Wire Line
-	4900 3000 4900 2550
-Wire Wire Line
-	4450 2350 4450 2750
-Wire Wire Line
-	4450 3000 4900 3000
-$Comp
-L power:+24V #PWR?
+L bmsLV-rescue:+24V-power #PWR?
 U 1 1 60770816
 P 3050 2250
 AR Path="/60770816" Ref="#PWR?"  Part="1" 
@@ -1778,35 +1726,6 @@ F 1 "+24V" H 3065 2423 50  0000 C CNN
 F 2 "" H 3050 2250 50  0001 C CNN
 F 3 "" H 3050 2250 50  0001 C CNN
 	1    3050 2250
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	4450 2750 4100 2750
-Connection ~ 4450 2750
-Wire Wire Line
-	4450 2750 4450 2900
-$Comp
-L Connector:Conn_01x02_Male J17
-U 1 1 6089DF71
-P 4100 2550
-F 0 "J17" H 4208 2731 50  0000 C CNN
-F 1 "Conn_01x02_Male" H 4208 2640 50  0000 C CNN
-F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 4100 2550 50  0001 C CNN
-F 3 "~" H 4100 2550 50  0001 C CNN
-	1    4100 2550
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	4000 2750 3800 2750
-$Comp
-L power:GND #PWR0107
-U 1 1 608CD223
-P 3800 2750
-F 0 "#PWR0107" H 3800 2500 50  0001 C CNN
-F 1 "GND" H 3805 2577 50  0000 C CNN
-F 2 "" H 3800 2750 50  0001 C CNN
-F 3 "" H 3800 2750 50  0001 C CNN
-	1    3800 2750
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1830,7 +1749,7 @@ Wire Wire Line
 Wire Wire Line
 	6550 1500 6450 1500
 $Comp
-L power:GND #PWR044
+L bmsLV-rescue:GND-power #PWR044
 U 1 1 604A2D56
 P 6550 1500
 F 0 "#PWR044" H 6550 1250 50  0001 C CNN
@@ -1853,4 +1772,15 @@ Wire Wire Line
 	5800 1950 5800 1650
 Wire Wire Line
 	5850 1950 5800 1950
+Wire Wire Line
+	4900 2550 4900 3800
+Wire Wire Line
+	4850 2450 4850 3300
+Wire Wire Line
+	5300 2350 5300 2250
+Wire Wire Line
+	4300 2250 5300 2250
+Wire Wire Line
+	5300 2250 5850 2250
+Connection ~ 5300 2250
 $EndSCHEMATC
