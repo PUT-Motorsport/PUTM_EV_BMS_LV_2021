@@ -37,15 +37,18 @@
 #define COEFF_LSB_TO_AMP	0.03222656f
 #define TEMPERATURE_WARNING_LIMIT	45.0f
 #define TEMPERATURE_ERROR_LIMIT	50.0f
-#define VOL_DOWN_LIMIT	33000
-#define VOL_DOWN_ALARM	36000
-#define VOL_UP_LIMIT	42300
-#define MAX_SUM_VOLTAGE 255000
+#define VOL_DOWN_LIMIT	35000 //3.5V
+#define VOL_DOWN_OK		37000 //3.7V
+#define VOL_UP_LIMIT	42400 //4.24V
+#define VOL_UP_OK	42200
+#define MAX_SUM_VOLTAGE 255000 // 25.5V
 #define NUMBER_OF_CELLS	6
 #define NEUTRAL_CURRENT_SENSOR 485
-#define NEUTRAL_CURRENT_CAR 0.25
-#define NEUTRAL_CURRENT_CAR2 -0.1
-#define COUNTER_TO_SLEEP	18000 //15min -> 15*60*1000/50 where 50 is the CheckError loop time
+#define NEUTRAL_CURRENT_CAR_POS 0.25
+#define NEUTRAL_CURRENT_CAR_NEG -0.25
+#define COUNTER_TO_SLEEP	18000 //15min -> 15*60*1000/50 where 50 is the checkError loop time
+#define UNBALANCE_LIMIT	2000 // 0.2V
+#define TOO_HIGH_CURRENT	25
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -72,21 +75,18 @@ TIM_HandleTypeDef htim8;
 /* USER CODE BEGIN PV */
 
 uint8_t ltcConfig[6] = {0xFC, (uint8_t)(1874 & 0xff), (uint8_t)((1874>>4)|(2625<<4)), (uint8_t)(2625>>4), 0, 0};
+uint8_t acuState;
 
-uint8_t acuState=0;
+//voltage
 uint16_t cellValues[NUMBER_OF_CELLS];
-//uint16_t lowestValue;
-uint16_t lowestValueB;
 uint8_t cellValuesCAN[NUMBER_OF_CELLS];
-uint16_t cellValuesErr[NUMBER_OF_CELLS];
-uint32_t cellValuesSum = 0;
-uint8_t cellValuesSumCAN = 0;
-bool cellDischarge[NUMBER_OF_CELLS];
+uint32_t cellValuesSum;
+uint8_t cellValuesSumCAN;
+
+//temperatures
 uint16_t tempValues[NUMBER_OF_CELLS];
-uint16_t tempValuesAvr = 0;
-uint8_t canFlag = 0;
-uint8_t errorFlag = 0;
-float tempValuesFloat[NUMBER_OF_CELLS];
+uint16_t tempValuesCAN[NUMBER_OF_CELLS];
+uint16_t tempValuesAvr;
 volatile uint16_t adcValues[NUMBER_OF_CELLS];
 
 //current
@@ -94,29 +94,31 @@ uint32_t currentSensor[100] = {0};
 float currentSensorAvg;
 float chargingCurrent;
 float outputCurrent = 0.0;
-float outputCurrent_buffer[50] = {0.0};
-int outputCurrent_buffer_i = 0;
-uint8_t outputCurrent_buffer_ready = 0;
-
-float output_power = 0.0;
-
 float outputCurrent_max = 0.0;
 float outputCurrent_min = 0.0;
 float outputCurrent_historic_max = 0.0;
 
-uint32_t ltc_refresh_next_tick = 0;
-uint32_t ltc_refresh_next_tick1 = 0;
-uint8_t ltc_new_data = 0;
+//flags
+uint32_t dataRefreshNextTick = 0;
+uint8_t newData = 0;
+bool can100HzFlag = 0;
 
-uint8_t discharge_activation=0;
+//charge/discharge
+uint8_t chargingOn = 0;
+uint8_t dischargeActivation=0;
+bool cellDischarge[NUMBER_OF_CELLS];
+static uint32_t dischargeTickEnd;
 
-uint8_t balance_activation = 0;
-uint8_t balance_test = 0;
-float balance_cell_target = 41.5;
-static uint32_t discharge_tick_end;
+//counters
+uint8_t errorCounterLowVol[NUMBER_OF_CELLS];
+uint8_t errorCounterHighVol[NUMBER_OF_CELLS];
+uint8_t errorCounterHighTemp[NUMBER_OF_CELLS];
+uint8_t errorCounterBalance[NUMBER_OF_CELLS];
+uint8_t errorCounterHighCur;
+uint16_t sleepCounter;
 
 const int temperatureMap[26][2] = {
-		//		ltc value ,  temperature *C
+		//	  adc value ,  temperature *C
 		{4096	,	-50} ,
 		{3713	,	-20} ,
 		{3602	,	-15} ,
@@ -145,43 +147,6 @@ const int temperatureMap[26][2] = {
 		{261	,	100}
 
 };
-
-uint16_t cell_voltage_target = 38000;
-
-float cell_temperatures[NUMBER_OF_CELLS];
-//uint8_t cellDischarge[6];
-float total_voltage = 0.0;
-
-uint16_t charger_current_target = 20;
-uint8_t charging_on = 0;
-
-uint8_t caution_low_voltage = 0;
-uint8_t caution_high_voltage = 0;
-uint8_t caution_high_temp = 0;
-uint8_t caution_low_temp = 0;
-
-bool can_100hz_flag = 0;
-bool flag100hz = 0;
-
-float minimum_voltage = 0.0;
-float max_temperature = 0.0;
-
-uint16_t charger_voltage_max;
-uint16_t charger_current_max;
-uint8_t charger_connection_status;
-
-uint8_t errorCounterLowVol[NUMBER_OF_CELLS];
-uint8_t errorCounterHighVol[NUMBER_OF_CELLS];
-uint8_t errorCounterHighTemp[NUMBER_OF_CELLS];
-uint8_t errorCounterBalance[NUMBER_OF_CELLS];
-uint8_t errorCounterHighCur;
-uint16_t sleepCounter;
-
-
-uint8_t skip = 0;
-
-
-volatile uint8_t usb_sending_busy;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -245,7 +210,7 @@ uint16_t pec15(char *data , int len)
  * Param:	None
  * Retval:	None
  */
-void LTC_Wakeup()
+void LTC_wakeUp()
 {
 	uint8_t tab[2] = {0xFF};
 
@@ -260,12 +225,10 @@ void LTC_Wakeup()
  * Param:	None
  * Retval:	None
  */
-void LTC_StartCellADC()
+void LTC_startCellAdc()
 {
-	//uint8_t *tab;
 	uint8_t tab[12];
 	uint16_t pec;
-	//tab = malloc(12); // 4 + n * (6 data + 2 pec)
 
 	uint16_t cmd = (1<<15) | 0x01;
 	// configuration
@@ -285,7 +248,7 @@ void LTC_StartCellADC()
 	tab[10] = pec >> 8;
 	tab[11] = pec;
 
-	LTC_Wakeup();
+	LTC_wakeUp();
 
 	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, RESET);
 	HAL_SPI_Transmit(&hspi1, tab, 12, 100);
@@ -303,13 +266,9 @@ void LTC_StartCellADC()
 	tab[2] = pec >> 8;
 	tab[3] = pec;
 
-	//LTC_Wakeup();
-
 	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, RESET);
 	HAL_SPI_Transmit(&hspi1, tab, 4, 100);
 	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, SET);
-
-	//free(tab);
 }
 
 
@@ -319,14 +278,10 @@ void LTC_StartCellADC()
  * Param:	None
  * Retval:	None
  */
-void LTC_GetValuesADC()
+void LTC_getValuesAdc()
 {
-	//uint8_t *tab, *rx_tab;
 	uint8_t tab[100], rx_tab[100];
-	uint16_t pec;//, rx_pec;
-
-	//tab = malloc(12);
-	//rx_tab = malloc(12);
+	uint16_t pec;
 
 	// read cell voltage group A
 	uint16_t cmd = (1<<15) | 0b100;
@@ -337,7 +292,7 @@ void LTC_GetValuesADC()
 	tab[2] = pec >> 8;
 	tab[3] = pec;
 
-	LTC_Wakeup();
+	LTC_wakeUp();
 
 	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, RESET);
 	HAL_SPI_TransmitReceive(&hspi1, tab, rx_tab, 12, 100);
@@ -358,8 +313,6 @@ void LTC_GetValuesADC()
 	tab[2] = pec >> 8;
 	tab[3] = pec;
 
-	//LTC_Wakeup();
-
 	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, RESET);
 	HAL_SPI_TransmitReceive(&hspi1, tab, rx_tab, 12, 100);
 	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, SET);
@@ -370,7 +323,7 @@ void LTC_GetValuesADC()
 
 	cellValuesSum  = cellValues[0];
 
-	//cell calculations
+	//cells sum calculations for CAN
 	for(unsigned int i = 1; i < NUMBER_OF_CELLS; i++)
 	{
 		cellValuesSum += cellValues[i];
@@ -379,33 +332,36 @@ void LTC_GetValuesADC()
 		cellValuesSum = MAX_SUM_VOLTAGE;
 	}
 	cellValuesSumCAN = cellValuesSum / 1000;
-	//free(tab);
-	//free(rx_tab);
 
 }
 
 
 /**
  * Brief:	Calculation of temperature, from value of measured voltage
- * Param:	ltc_value:	Value of voltage, LSB -> 0.1 mV
+ * Param:	value:	Value of voltage, LSB -> 0.1 mV
  * Retval:	Temperature in *C
  */
-float tempCalculate(uint16_t ltc_value)
+float tempCalculate(uint16_t value)
 {
 	float retval = 0.0;
 	for(unsigned int i = 1; i < 28; i++)
 	{
-		if(ltc_value >= (uint16_t)temperatureMap[i][0])
+		if(value >= (uint16_t)temperatureMap[i][0])
 		{
 			// approximation
-			retval = (float)temperatureMap[i][1] - 5.0 * ((float)ltc_value-(float)temperatureMap[i][0]) / ((float)temperatureMap[i-1][0] - (float)temperatureMap[i][0]);
+			retval = (float)temperatureMap[i][1] - 5.0 * ((float)value-(float)temperatureMap[i][0]) / ((float)temperatureMap[i-1][0] - (float)temperatureMap[i][0]);
 			break;
 		}
 	}
 	return retval;
 }
 
-void GetTemp()
+/**
+ * Brief:	Getting proper values of temperatures on every cell in *C
+ * Param:	None
+ * Retval:	None
+ */
+void getTemp()
 {
 	tempValuesAvr = 0;
 	for(unsigned int i = 0; i < NUMBER_OF_CELLS; i++)
@@ -415,8 +371,12 @@ void GetTemp()
 	}
 	tempValuesAvr = tempValuesAvr / 6;
 }
-
-void MuteDis()
+/**
+ * Brief:	Muting discharge
+ * Param:	None
+ * Retval:	None
+ */
+void muteDis()
 {
 	uint8_t tab[4];
 	uint16_t pec;
@@ -430,14 +390,18 @@ void MuteDis()
 	tab[2] = pec >> 8;
 	tab[3] = pec;
 
-	LTC_Wakeup();
+	LTC_wakeUp();
 
 	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, RESET);
 	HAL_SPI_Transmit(&hspi1, tab, 4, 100);
 	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, SET);
 }
-
-void UnmuteDis()
+/**
+ * Brief:	Unmuting discharge
+ * Param:	None
+ * Retval:	None
+ */
+void unmuteDis()
 {
 	uint8_t tab[4];
 	uint16_t pec;
@@ -451,7 +415,7 @@ void UnmuteDis()
 	tab[2] = pec >> 8;
 	tab[3] = pec;
 
-	LTC_Wakeup();
+	LTC_wakeUp();
 
 	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, RESET);
 	HAL_SPI_Transmit(&hspi1, tab, 4, 100);
@@ -460,15 +424,15 @@ void UnmuteDis()
 
 /**
  * Brief:	Send discharge configuration and start the discharge, BLOCKING MODE
- * Param:	None
+ * Param:	cell: number of cell wanted to be discharged
  * Retval:	None
  */
-void LTC_TurnOnDischarge(int cell)
+void LTC_turnOnDischarge(int cell)
 {
 	uint8_t tab[12];
 	uint16_t pec;
 
-	UnmuteDis();
+	unmuteDis();
 
 	uint16_t cmd = (1<<15) | 0b10100;
 	memset(tab, 0, 12);
@@ -489,19 +453,11 @@ void LTC_TurnOnDischarge(int cell)
 	tab[10] = pec >> 8;
 	tab[11] = pec;
 
-	LTC_Wakeup();
+	LTC_wakeUp();
 
 	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, RESET);
 	HAL_SPI_Transmit(&hspi1, tab, 12, 100);
 	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, SET);
-
-	/*for(int i = 0; i < 6; i++)
-	  {
-		  if(cellDischarge[i] == 1)
-		  {
-			  ltcConfig[4] = ltcConfig[4] | (1 << (i));
-		  }
-	  }*/
 
 	cmd = (1<<15) | 0x01;
 	memset(tab, 0, 12);
@@ -519,10 +475,6 @@ void LTC_TurnOnDischarge(int cell)
 	if(cell<7){
 		ltcConfig[4] = ltcConfig[4] | (1 << (cell));
 	}
-	//if(cell == 0){
-	//	ltcConfig[4] = ltcConfig[4] | (0x80);
-	//}
-	//ltcConfig[4]=0b00000011;
 	tab[8] = ltcConfig[4];
 	tab[9] = ltcConfig[5];
 	pec = pec15((char*)&tab[4], 6);
@@ -542,7 +494,7 @@ void LTC_TurnOnDischarge(int cell)
  * Param:	None
  * Retval:	None
  */
-void LTC_TurnOffDischarge()
+void LTC_turnOffDischarge()
 {
 
 	uint8_t tab[100], rx_tab[100];
@@ -568,7 +520,7 @@ void LTC_TurnOffDischarge()
 	tab[10] = pec >> 8;
 	tab[11] = pec;
 
-	LTC_Wakeup();
+	LTC_wakeUp();
 
 	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, RESET);
 	HAL_SPI_Transmit(&hspi1, tab, 12, 100);
@@ -600,13 +552,15 @@ void LTC_TurnOffDischarge()
 	HAL_SPI_Transmit(&hspi1, tab, 12, 100);
 	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, SET);
 
-	MuteDis();
-
+	muteDis();
 }
 
-
-
-void can_init()
+/**
+ * Brief:	CAN initialization
+ * Param:	None
+ * Retval:	None
+ */
+void canInit()
 {
 	CAN_FilterTypeDef filter;
 	filter.FilterActivation = ENABLE;
@@ -625,18 +579,15 @@ void can_init()
 	HAL_CAN_Start(&hcan1);
 
 }
-
-void BalanceControl()
+/**
+ * Brief:	Control of cell discharges
+ * Param:	None
+ * Retval:	None
+ */
+void balanceControl()
 {
-	float max_cell_voltage = 41900;
-
-	//static uint32_t balance_start_tick = 0;
-
-	charger_voltage_max = 0;
-	charger_current_max = 0;
-
 	uint8_t charged_cells = 0;
-	if(charging_on == 1)
+	if(chargingOn == 1)
 	{
 		uint16_t lowestValue;
 		lowestValue=cellValues[0];
@@ -647,7 +598,7 @@ void BalanceControl()
 				lowestValue = cellValues[i];
 			}
 		}
-		if(discharge_activation == 0)
+		if(dischargeActivation == 0)
 		{
 			uint8_t discharge_at_once = 0;
 			for(int i = 0; i < NUMBER_OF_CELLS; i++)
@@ -662,10 +613,10 @@ void BalanceControl()
 						discharge_at_once++;
 						i++;
 					}
-					discharge_activation = 1;
-					discharge_tick_end = HAL_GetTick()+20000;
+					dischargeActivation = 1;
+					dischargeTickEnd = HAL_GetTick()+20000;
 				}
-				else if(cellValues[i] > max_cell_voltage)
+				else if(cellValues[i] > VOL_UP_OK)
 				{
 					charged_cells++;
 					if(discharge_at_once < 2)
@@ -674,25 +625,25 @@ void BalanceControl()
 						discharge_at_once++;
 						i++;
 					}
-					discharge_activation = 1;
-					discharge_tick_end = HAL_GetTick()+20000;
+					dischargeActivation = 1;
+					dischargeTickEnd = HAL_GetTick()+20000;
 				}
 				else
 					cellDischarge[i] = 0;
 
-				if(cellValues[i] >= max_cell_voltage + 100) charging_on = 2;
+				if(cellValues[i] >= VOL_UP_OK + 100) chargingOn = 2;
 			}
 		}
 		if(charged_cells >= 4)
 		{
-			charging_on = 2;
+			chargingOn = 2;
 			chargingCurrent = abs(outputCurrent);
 		}
 	}
 	else
 	{
 		HAL_GPIO_WritePin(LED_3_GPIO_Port, LED_3_Pin, SET);
-		discharge_activation = 0;
+		dischargeActivation = 0;
 
 		for(int i = 0; i < NUMBER_OF_CELLS; i++)
 		{
@@ -700,7 +651,7 @@ void BalanceControl()
 		}
 	}
 
-	if(charging_on == 2 && abs(outputCurrent) < 0.1 * chargingCurrent)
+	if(chargingOn == 2 && abs(outputCurrent) < 0.1 * chargingCurrent)
 	{
 		HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, RESET);
 		HAL_GPIO_WritePin(LED_3_GPIO_Port, LED_3_Pin, SET);
@@ -715,15 +666,17 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	if(htim->Instance == TIM3)
 	{
-		can_100hz_flag = 1;
-		flag100hz = 1;
+		can100HzFlag = 1;
 	}
 
 }
-
-void CalculateCurrent()
+/**
+ * Brief:	Calculations of output current
+ * Param:	None
+ * Retval:	None
+ */
+void calculateCurrent()
 {
-	static uint8_t first_calc = 0;
 	float raw_sum = 0, raw_max = INT32_MIN, raw_min = INT32_MAX;
 
 	for(int i = 0; i < 100; i++)
@@ -748,23 +701,20 @@ void CalculateCurrent()
 
 	if(outputCurrent < -1)
 	{
-		charging_on = 1;
+		chargingOn = 1;
 	}else{
-		charging_on = 0;
+		chargingOn = 0;
 	}
 
 }
 
-
 /**
- * @brief	Checking values and switching off safety
- * @param	None
- * @retval	None
+ * Brief:	Checking values and switching off safety
+ * Param:	None
+ * Retval:	None
  */
-void CheckError()
+void checkError()
 {
-	//accumulator
-
 	uint16_t lowestValue;
 	lowestValue=cellValues[0];
 	for(int i = 1; i < NUMBER_OF_CELLS; i++)
@@ -775,16 +725,14 @@ void CheckError()
 		}
 	}
 
-
 	/*if(HAL_GPIO_ReadPin(LED_2_GPIO_Port, LED_2_Pin) == 1)
 	{
 		HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, SET);
 	}*/
-
 	for(int i = 0; i < NUMBER_OF_CELLS; i++)
 	{
 		//if (HAL_GPIO_ReadPin(LED_2_GPIO_Port, LED_2_Pin) != 1){
-		if((cellValues[i] - lowestValue) > 2000)
+		if((cellValues[i] - lowestValue) > UNBALANCE_LIMIT)
 		{
 			errorCounterBalance[i]++;
 		}else{
@@ -813,21 +761,20 @@ void CheckError()
 			errorCounterHighTemp[i]=0;
 			acuState = 0;
 		}
-		if(cellValues[i] < 30000)
+		/*if(cellValues[i] < 30000)
 		{
-			//sleep mode
-
-		}
+			sleep mode
+		}*/
 	}
 
-	if(outputCurrent <= NEUTRAL_CURRENT_CAR && outputCurrent >= NEUTRAL_CURRENT_CAR2)
+	if(outputCurrent <= NEUTRAL_CURRENT_CAR_POS && outputCurrent >= NEUTRAL_CURRENT_CAR_NEG)
 	{
 		sleepCounter++;
 	}else{
 		sleepCounter = 0;
 		acuState = 0;
 	}
-	if(outputCurrent > 25)
+	if(outputCurrent > TOO_HIGH_CURRENT)
 	{
 		errorCounterHighCur++;
 	}else{
@@ -836,48 +783,45 @@ void CheckError()
 	}
 	for(int i = 0; i < NUMBER_OF_CELLS; i++)
 	{
-		if(errorCounterLowVol[i]>=9)
+		if(errorCounterLowVol[i] >= 9)
 		{
 			acuState = 0b1; //too low voltage
-			if(errorCounterLowVol[i]==10)
+			if(errorCounterLowVol[i] == 10)
 			{
 				HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, RESET);
 
 				HAL_GPIO_WritePin(LED_3_GPIO_Port, LED_3_Pin, RESET);
 			}
 		}
-		if(errorCounterHighVol[i]>=9)
+		if(errorCounterHighVol[i] >= 9)
 		{
 			acuState = 0b10; //too high voltage
-			if(errorCounterHighVol[i]==10)
+			if(errorCounterHighVol[i] == 10)
 			{
 				HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, RESET);
 				//HAL_GPIO_WritePin(LED_3_GPIO_Port, LED_3_Pin, RESET);
 			}
 		}
-		if(errorCounterHighTemp[i]>=19)
+		if(errorCounterHighTemp[i] >= 19)
 		{
 			acuState = 0b11; //too high temp
-			if(errorCounterHighTemp[i]==20)
+			if(errorCounterHighTemp[i] == 20)
 			{
 				HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, RESET);
 
 				HAL_GPIO_WritePin(LED_4_GPIO_Port, LED_4_Pin, RESET);
 			}
 		}
-		if(errorCounterBalance[i]>=1)
+		if(errorCounterBalance[i] >= 1)
 		{
 			acuState = 0b100; //not balanced
-			if(errorCounterBalance[i]==2)
+			if(errorCounterBalance[i] == 2)
 			{
 				HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, RESET);
 				//HAL_GPIO_WritePin(LED_4_GPIO_Port, LED_4_Pin, RESET);
 			}
 		}
-		if(sleepCounter == COUNTER_TO_SLEEP){
-			HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, RESET);
-		}
-		//if(cellValues[i] > 36000 && cellValues[i] <= 42300 && tempValues[i] < 40 && sleepCounter < 400)
+		//if(cellValues[i] > 37000 && cellValues[i] <= 42200 && tempValues[i] < 40 && sleepCounter < COUNTER_TO_SLEEP)
 		//{
 		//	HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, SET);
 		//}
@@ -896,10 +840,19 @@ void CheckError()
 		}
 	}
 
+	if(sleepCounter == COUNTER_TO_SLEEP){
+		acuState = 0b110; //Relay permanently switched off- need to reset
+		HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, RESET);
+	}
+
 
 }
-
-void CAN_Data1()
+/**
+ * Brief:	First CAN message
+ * Param:	None
+ * Retval:	None
+ */
+void canData_1()
 {
 	CAN_TxHeaderTypeDef tx_header;
 	tx_header.DLC = 8;
@@ -913,6 +866,17 @@ void CAN_Data1()
 		cellValuesCAN[i] = cellValues[i] / 1000;
 	}
 
+	/*
+	 * acuState:
+	 * 0- all good
+	 * 1- too low voltage
+	 * 2- too high voltage
+	 * 3- too high temperature
+	 * 4- cells are not balanced (difference from lowest to any >0.2V)
+	 * 5- too high current
+	 * 6- relay permanently switched off- need to reset
+	 */
+
 	data[0] = acuState;
 	data[1] = cellValuesSumCAN;
 	data[2] = cellValuesCAN[0];
@@ -925,8 +889,12 @@ void CAN_Data1()
 	uint32_t mailbox = 0;
 	HAL_CAN_AddTxMessage(&hcan1, &tx_header, data, &mailbox);
 }
-
-void CAN_Data2()
+/**
+ * Brief:	Second CAN message
+ * Param:	None
+ * Retval:	None
+ */
+void canData_2()
 {
 	CAN_TxHeaderTypeDef tx_header;
 	tx_header.DLC = 8;
@@ -934,73 +902,56 @@ void CAN_Data2()
 	tx_header.RTR = CAN_RTR_DATA;
 	tx_header.StdId = 0x5F;
 	uint8_t data[7];
-	data[0] = tempValuesAvr;
-	data[1] = tempValues[5];
-	data[2] = tempValues[2];
-	data[3] = tempValues[4];
-	data[4] = tempValues[1];
-	data[5] = tempValues[3];
-	data[6] = tempValues[0];
+
+	tempValuesCAN[0] = tempValues[5];
+	tempValuesCAN[1] = tempValues[2];
+	tempValuesCAN[2] = tempValues[4];
+	tempValuesCAN[3] = tempValues[1];
+	tempValuesCAN[4] = tempValues[3];
+	tempValuesCAN[5] = tempValues[0];
 	//mixed because of thermistor placement
+
+	data[0] = tempValuesAvr;
+	data[1] = tempValuesCAN[0];
+	data[2] = tempValuesCAN[1];
+	data[3] = tempValuesCAN[2];
+	data[4] = tempValuesCAN[3];
+	data[5] = tempValuesCAN[4];
+	data[6] = tempValuesCAN[5];
 
 	uint32_t mailbox = 0;
 	HAL_CAN_AddTxMessage(&hcan1, &tx_header, data, &mailbox);
 }
 
-
-
 /**
- * discharge to balance the accumulator
+ * Brief:	Activation of balance
+ * Param:	None
+ * Retval:	None
  */
-void balance()
+void balanceActivation()
 {
-	if(balance_activation == 0)
+	if(dischargeActivation == 1)
 	{
-		// turn off discharge only when charging is also off
-		if(charging_on == 0) discharge_activation = 0;
-		return;
-	}
-
-	if(balance_test == 0)
-	{
-		uint16_t lowestValue;
-		lowestValue=cellValues[0];
-		for(int j = 1; j < NUMBER_OF_CELLS; j++)
+		for(int i = 0; i < NUMBER_OF_CELLS ; i++)
 		{
-			if(lowestValue > cellValues[j])
+			if(cellDischarge[i] == 1)
 			{
-				lowestValue = cellValues[j];
+				LTC_turnOnDischarge(i);
 			}
 		}
 
-		uint8_t balance_at_once = 0;
-		for(int i = 0; i < NUMBER_OF_CELLS; i++)
-		{
-
-			if((cellValues[i] - lowestValue) > 2000)
-			{
-				if(balance_at_once < 2)
-				{
-					cellDischarge[i] = 1;
-					balance_at_once++;
-					discharge_activation = 1;
-				}
-			}
-
-
-		}
 	}
 	else
 	{
-		for(int i = 0; i < NUMBER_OF_CELLS; i++)
-		{
-			cellDischarge[i] = 0;
-		}
-		discharge_activation = 0;
+		LTC_turnOffDischarge();
 	}
 }
-
-void ltc_daisy_serial_print()
+/**
+ * Brief:	Serial print through USB- all voltages, temperatures and output current (min, max, historical max and active)
+ * Param:	None
+ * Retval:	None
+ */
+void serialPrint()
 {
 	static char tab[3000];
 	uint16_t n=0;
@@ -1010,34 +961,54 @@ void ltc_daisy_serial_print()
 	HAL_RTC_GetTime(&hrtc, &rtc_time, RTC_FORMAT_BIN);
 	HAL_RTC_GetDate(&hrtc, &rtc_date, RTC_FORMAT_BIN);
 
-	if (usb_sending_busy == 1) return;
-
+	float cellValuesSumF = (float)cellValuesSum / 10000;
 	n += sprintf(&tab[n], "%02d:%02d:%02d\r\n", rtc_time.Hours, rtc_time.Minutes, rtc_time.Seconds);
-	n += sprintf(&tab[n], "*** stack voltage\t%d V ******", cellValuesSum);
+	n += sprintf(&tab[n], "*** Battery state: %d ***", acuState);
+	n += sprintf(&tab[n], "\n");
+	n += sprintf(&tab[n], "LEGEND FOR BATTERY STATE:");
+	n += sprintf(&tab[n], "\n");
+	n += sprintf(&tab[n], "0- all good");
+	n += sprintf(&tab[n], "\n");
+	n += sprintf(&tab[n], "1- too low voltage");
+	n += sprintf(&tab[n], "\n");
+	n += sprintf(&tab[n], "2- too high voltage");
+	n += sprintf(&tab[n], "\n");
+	n += sprintf(&tab[n], "3- too high temperature");
+	n += sprintf(&tab[n], "\n");
+	n += sprintf(&tab[n], "4- cells are not balanced (difference from lowest to any >0.2V)");
+	n += sprintf(&tab[n], "\n");
+	n += sprintf(&tab[n], "5- too high current");
+	n += sprintf(&tab[n], "\n");
+	n += sprintf(&tab[n], "6- relay permanently switched off- need to reset");
+	n += sprintf(&tab[n], "\r\n\n");
+	n += sprintf(&tab[n], "*** Stack voltage:\t%3.2f V ***", cellValuesSumF);
+	n += sprintf(&tab[n], "\r\n");
 
 	for(int i = 0; i < NUMBER_OF_CELLS; i++)
 	{
-		n += sprintf(&tab[n], "%d%c\t", cellValues[i], cellDischarge[i] == 0 ? ' ' : '*');
-		n += sprintf(&tab[n], "  -T-\t");
-		n += sprintf(&tab[n], "%d\t", tempValues[i]);
-		n+= sprintf(&tab[n], "\r\n");
+		float cellValue = (float)cellValues[i] / 10000;
+		n += sprintf(&tab[n], "-V.%d-\t", i+1);
+		n += sprintf(&tab[n], "%1.2f%c\t", cellValue, cellDischarge[i] == 0 ? ' ' : '*');
+		n += sprintf(&tab[n], " -T.%d-\t", i+1);
+		n += sprintf(&tab[n], "%d\t", tempValuesCAN[i]);
+		n += sprintf(&tab[n], "\r\n");
 	}
 
 	n += sprintf(&tab[n], "\r\n");
+	n += sprintf(&tab[n], "Output current:\t%3.2f\r\n", outputCurrent);
+	n += sprintf(&tab[n], "Max current:\t%3.2f\r\n", outputCurrent_max);
+	n += sprintf(&tab[n], "Min current:\t%3.2f\r\n", outputCurrent_min);
+	n += sprintf(&tab[n], "Historic max:\t%3.2f\r\n", outputCurrent_historic_max);
+	n += sprintf(&tab[n], "\r\n");
 
-
-
-	n += sprintf(&tab[n], "output current\t%d\r\n", outputCurrent);
-	n += sprintf(&tab[n], "max current\t%d\r\n", outputCurrent_max);
-	n += sprintf(&tab[n], "min current\t%d\r\n", outputCurrent_min);
-	n += sprintf(&tab[n], "hmax:\t%d\r\n", outputCurrent_historic_max);
-
-
+	n += sprintf(&tab[n], "Relay state:\t%d\r\n", HAL_GPIO_ReadPin(RELAY_GPIO_Port, RELAY_Pin));
 	n += sprintf(&tab[n], "\r\n");
 
 	CDC_Transmit_FS(tab, n);
-	usb_sending_busy = 1;
 }
+
+
+
 /* USER CODE END 0 */
 
 /**
@@ -1085,7 +1056,7 @@ int main(void)
 
 	HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, SET);
 
-	can_init();
+	canInit();
 
 	HAL_TIM_Base_Start_IT(&htim3);
 	HAL_TIM_Base_Start(&htim6);
@@ -1103,117 +1074,89 @@ int main(void)
 	HAL_ADC_Start_DMA(&hadc2, (uint32_t*)currentSensor, 100);
 
 
-	ltc_refresh_next_tick = HAL_GetTick();
+	dataRefreshNextTick = HAL_GetTick();
 	uint8_t chargingLED = 0;
-	//uint8_t skip = 0;
-	//ltc_refresh_next_tick1 = HAL_GetTick();
+	uint8_t skip = 0;
 
 	while (1)
 	{
-
-
-		/*if(flag100hz == 1)
+		if(dataRefreshNextTick <= HAL_GetTick())
 		{
-			CalculateCurrent();
-			flag100hz = 0;
-		}*/
-		if(ltc_refresh_next_tick <= HAL_GetTick())
-		{
-			ltc_refresh_next_tick += 50; //50ms loop
+			dataRefreshNextTick += 50; //50ms loop
 
 
 			// discharge off while adc
-			//LTC_TurnOffDischarge();
-			HAL_Delay(1);
+			//LTC_turnOffDischarge();
 
-			LTC_StartCellADC();
+			HAL_Delay(1);
+			LTC_startCellAdc();
 			HAL_Delay(30);
 
 			// on discharge if needed
-
-			//if(discharge_activation == 1)
+			//if(dischargeActivation == 1)
 			//	  {
-			//		  LTC_TurnOnDischarge();
+			//		  LTC_turnOnDischarge();
 			//	  }
 
-			LTC_GetValuesADC();
+			LTC_getValuesAdc();
 
-			GetTemp();
+			getTemp();
 
 			chargingLED++;
 
-			ltc_new_data = 1;
+			newData = 1;
 
-			if(discharge_tick_end < HAL_GetTick())
+			if(dischargeTickEnd < HAL_GetTick())
+			{
+				dischargeActivation = 0;
+				dischargeTickEnd = 0;
+				for(int i = 0; i < NUMBER_OF_CELLS; i++)
 				{
-					discharge_activation = 0;
-					discharge_tick_end = 0;
-					for(int i = 0; i < NUMBER_OF_CELLS; i++)
-					{
-						cellDischarge[i] = 0;
-					}
-					skip++;
+					cellDischarge[i] = 0;
 				}
+				skip++;
+			}
 		}
 
-		if(ltc_new_data == 1)
+		if(newData == 1)
 		{
-			ltc_new_data = 0;
+			newData = 0;
 
-			CalculateCurrent();
+			calculateCurrent();
 
 			// accumulator status
-			CheckError();
+			checkError();
 
 			if(skip == 10)
 			{
-				BalanceControl();
+				balanceControl();
 				skip = 0;
-			}else if(discharge_tick_end > HAL_GetTick()){
-				BalanceControl();
+			}else if(dischargeTickEnd > HAL_GetTick()){
+				balanceControl();
 			}
 
-			if(charging_on == 1 && chargingLED == 10)
+			if(chargingOn == 1 && chargingLED == 10)
 			{
 				HAL_GPIO_TogglePin(LED_3_GPIO_Port, LED_3_Pin);
 				chargingLED = 0;
 			}
 
-			// only balance
-			//balance();
 
-			// control balance
-			if(discharge_activation == 1)
-			{
-				for(int i = 0; i < NUMBER_OF_CELLS ; i++)
-				{
-					if(cellDischarge[i] == 1)
-					{
-						LTC_TurnOnDischarge(i);
-					}
-				}
+			// balance activation
+			balanceActivation();
 
-			}
-			else
-			{
-				LTC_TurnOffDischarge();
-			}
-
-			//calculate output current
-			//analize_accumulator();
-
-			ltc_daisy_serial_print();
+			//Serial Print through USB
+			serialPrint();
 
 		}
-		if(can_100hz_flag == 1)
+		if(can100HzFlag == 1)
 		{
-			CAN_Data1();
-			CAN_Data2();
-			can_100hz_flag = 0;
+			canData_1();
+			canData_2();
+			can100HzFlag = 0;
 		}
-		//LTC_TurnOnDischarge(1);
-		//HAL_GPIO_WritePin(LED_2_GPIO_Port, LED_2_Pin,
-		//		HAL_GPIO_ReadPin(RELAY_GPIO_Port, RELAY_Pin));
+		//LTC_turnOnDischarge(1); //balance test
+
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
