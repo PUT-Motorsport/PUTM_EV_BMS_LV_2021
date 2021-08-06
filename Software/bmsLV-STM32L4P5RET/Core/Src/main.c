@@ -34,21 +34,22 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define COEFF_LSB_TO_AMP	0.03222656f
+#define COEFF_LSB_TO_AMP			0.03222656f
 #define TEMPERATURE_WARNING_LIMIT	45.0f
-#define TEMPERATURE_ERROR_LIMIT	50.0f
-#define VOL_DOWN_LIMIT	35000 //3.5V
-#define VOL_DOWN_OK		37000 //3.7V
-#define VOL_UP_LIMIT	42400 //4.24V
-#define VOL_UP_OK	42200
-#define MAX_SUM_VOLTAGE 255000 // 25.5V
-#define NUMBER_OF_CELLS	6
-#define NEUTRAL_CURRENT_SENSOR 485
-#define NEUTRAL_CURRENT_CAR_POS 0.25
-#define NEUTRAL_CURRENT_CAR_NEG -0.25
-#define COUNTER_TO_SLEEP	18000 //15min -> 15*60*1000/50 where 50 is the checkError loop time
-#define UNBALANCE_LIMIT	2000 // 0.2V
-#define TOO_HIGH_CURRENT	25
+#define TEMPERATURE_LIMIT			50.0f
+#define VOL_DOWN_LIMIT				33000 	//3.3V
+#define VOL_DOWN_OK					36000 	//3.6V
+#define VOL_UP_LIMIT				42400 	//4.24V
+#define VOL_UP_OK					42000 	//4.2V
+#define MAX_SUM_VOLTAGE 			255000 	// 25.5V
+#define NUMBER_OF_CELLS				6
+#define NEUTRAL_CURRENT_SENSOR 		485
+#define NEUTRAL_CURRENT_CAR_POS 	0.25
+#define NEUTRAL_CURRENT_CAR_NEG 	-0.25
+#define COUNTER_TO_SLEEP			18000 	//15min -> 15*60*1000/50 where 50 is the checkError loop time
+#define UNBALANCE_LIMIT				1000 	// 0.1V
+#define BALANCE_VALUE				100 	//0.01V
+#define TOO_HIGH_CURRENT			25 		//25A
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -108,6 +109,7 @@ uint8_t chargingOn = 0;
 uint8_t dischargeActivation=0;
 bool cellDischarge[NUMBER_OF_CELLS];
 static uint32_t dischargeTickEnd;
+uint8_t dischargeAtOnce = 0;
 
 //counters
 uint8_t errorCounterLowVol[NUMBER_OF_CELLS];
@@ -600,17 +602,14 @@ void balanceControl()
 		}
 		if(dischargeActivation == 0)
 		{
-			uint8_t discharge_at_once = 0;
 			for(int i = 0; i < NUMBER_OF_CELLS; i++)
 			{
-
-
-				if((cellValues[i] - lowestValue) > 1000)
+				if((cellValues[i] - lowestValue) > BALANCE_VALUE)
 				{
-					if(discharge_at_once < 2)
+					if(dischargeAtOnce < 2)
 					{
 						cellDischarge[i] = 1;
-						discharge_at_once++;
+						dischargeAtOnce++;
 						i++;
 					}
 					dischargeActivation = 1;
@@ -619,10 +618,10 @@ void balanceControl()
 				else if(cellValues[i] > VOL_UP_OK)
 				{
 					charged_cells++;
-					if(discharge_at_once < 2)
+					if(dischargeAtOnce < 2)
 					{
 						cellDischarge[i] = 1;
-						discharge_at_once++;
+						dischargeAtOnce++;
 						i++;
 					}
 					dischargeActivation = 1;
@@ -631,7 +630,7 @@ void balanceControl()
 				else
 					cellDischarge[i] = 0;
 
-				if(cellValues[i] >= VOL_UP_OK + 100) chargingOn = 2;
+				if(cellValues[i] >= VOL_UP_OK) chargingOn = 2;
 			}
 		}
 		if(charged_cells >= 4)
@@ -655,6 +654,27 @@ void balanceControl()
 	{
 		HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, RESET);
 		HAL_GPIO_WritePin(LED_3_GPIO_Port, LED_3_Pin, SET);
+	}
+
+	if(dischargeActivation == 0)
+	{
+		for(int i = 0; i < NUMBER_OF_CELLS; i++)
+		{
+			if(cellValues[i] > VOL_UP_OK)
+			{
+				charged_cells++;
+				if(dischargeAtOnce < 2)
+				{
+					cellDischarge[i] = 1;
+					dischargeAtOnce++;
+					i++;
+				}
+				dischargeActivation = 1;
+				dischargeTickEnd = HAL_GetTick()+20000;
+			}
+			else
+				cellDischarge[i] = 0;
+		}
 	}
 
 
@@ -754,7 +774,7 @@ void checkError()
 			errorCounterHighVol[i]=0;
 			acuState=0;
 		}
-		if(tempValues[i] > TEMPERATURE_ERROR_LIMIT)
+		if(tempValues[i] > TEMPERATURE_LIMIT)
 		{
 			errorCounterHighTemp[i]++;
 		}else{
@@ -781,6 +801,9 @@ void checkError()
 		errorCounterHighCur = 0;
 		acuState = 0;
 	}
+
+	//EVERY COUNTER IS MULTIPLIED BY 50MS. IT IS A TIME!
+
 	for(int i = 0; i < NUMBER_OF_CELLS; i++)
 	{
 		if(errorCounterLowVol[i] >= 9)
@@ -812,10 +835,10 @@ void checkError()
 				HAL_GPIO_WritePin(LED_4_GPIO_Port, LED_4_Pin, RESET);
 			}
 		}
-		if(errorCounterBalance[i] >= 1)
+		if(errorCounterBalance[i] >= 9)
 		{
 			acuState = 0b100; //not balanced
-			if(errorCounterBalance[i] == 2)
+			if(errorCounterBalance[i] == 10)
 			{
 				HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, RESET);
 				//HAL_GPIO_WritePin(LED_4_GPIO_Port, LED_4_Pin, RESET);
@@ -1110,6 +1133,7 @@ int main(void)
 			{
 				dischargeActivation = 0;
 				dischargeTickEnd = 0;
+				dischargeAtOnce = 0;
 				for(int i = 0; i < NUMBER_OF_CELLS; i++)
 				{
 					cellDischarge[i] = 0;
